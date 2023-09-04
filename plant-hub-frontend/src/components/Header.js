@@ -2,17 +2,18 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar'; function Header() {
+import Navbar from 'react-bootstrap/Navbar';
+function Header() {
 
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand to="">Navbar</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link to="">Home</Nav.Link>
+            <Nav.Link to="plants">Features</Nav.Link>
+            <Nav.Link to="contact">Pricing</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
