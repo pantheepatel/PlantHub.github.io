@@ -30,22 +30,27 @@ def reloadDataEachPlant(request, fromId=1, toId=3):
             str(id)+'?key=sk-XI3m64f21258ee70e1780'
         response = requests.get(url)
         data_ = response.json()
-        PlantDetail.objects.create(id=data_['id'], name=data_['common_name'], cycle=data_['cycle'],
-                                   watering=data_['watering'], description=data_[
-                                       'description'],
-                                   image=data_[
-                                       'default_image']['regular_url'], type=data_['type'],
-                                   flowers=data_['flowers'], flowering_season=data_[
-                                       'flowering_season'],
-                                   fruit=data_['fruits'], edible_fruit=data_[
-                                       'edible_fruit'],
-                                   growth_rate=data_['growth_rate'],
-                                   maintenance=data_[
-                                       'maintenance'], medicinal=data_['medicinal'],
-                                   poisonous_to_humans=data_[
-                                       'poisonous_to_humans'], poisonous_to_pets=data_['poisonous_to_pets'],
-                                   thorny=data_['thorny'],
-                                   indoor=data_['indoor'], care_level=data_['care_level'])
+        PlantDetail.objects.create(
+            id=data_['id'],
+            name=data_['common_name'],
+            cycle=data_['cycle'],
+            watering=data_['watering'],
+            description=data_['description'],
+            image=data_['default_image']['regular_url'],
+            type=data_['type'],
+            flowers=data_['flowers'],
+            flowering_season=data_['flowering_season'],
+            fruit=data_['fruits'],
+            edible_fruit=data_['edible_fruit'],
+            growth_rate=data_['growth_rate'],
+            maintenance=data_['maintenance'],
+            medicinal=data_['medicinal'],
+            poisonous_to_humans=data_['poisonous_to_humans'],
+            poisonous_to_pets=data_['poisonous_to_pets'],
+            thorny=data_['thorny'],
+            indoor=data_['indoor'],
+            care_level=data_['care_level']
+        )
         print('success:', id)
     return JsonResponse({'success': True})
 
@@ -63,7 +68,7 @@ def fetchPlantDetails(request):
 
 
 # to get only specific id plant
-def fetchPlant(request,id):
+def fetchPlant(request, id):
     plant = PlantDetail.objects.filter(id=id).values()
     return JsonResponse({"plantDetails": list(plant)})
 

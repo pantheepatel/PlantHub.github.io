@@ -1,11 +1,33 @@
+// this component is to render overview in plantList page
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
-// import Plant from '../interfaces/Plant';
-import { plantData } from '../services/PlantDetail';
 
 function PlantCard(props) {
+  return (
+    <div className='my-2' key={props.id}>
+      <Card>
+        <Card.Img variant="top" src={props.image} />
+        <Card.Body>
+          <Card.Title>{props.name}</Card.Title>
+          <Card.Text>
+            <span>cycle: {props.cycle}</span>
+            <br />
+            <span>watering: {props.watering}</span>
+          </Card.Text>
+          {/* to change the link according to clicked plant card */}
+          <Link to={`/plants/${props.id}`}>
+            <Button variant="success">
+              Know More
+            </Button>
+          </Link>
+        </Card.Body>
+      </Card>
+    </div>
+  );
+
+
   // const [plantName, setPlantName] = useState(null)
   // const [plantId, setPlantId] = useState(null)
   // plants=Plant
@@ -21,49 +43,32 @@ function PlantCard(props) {
   // function passID(id){
   //   console.log('id is : ',id)
   // }
-  return (
-    // <>
-    //   {
-    //     // plants.map((item, index) => {
-    //     //   return (
-    //     //     <Card key={item['id']}>
-    //     //       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-    //     //       <Card.Body>
-    //     //         <Card.Title>{item['name']}</Card.Title>
-    //     //         <Card.Text>
-    //     //           Some quick example text to build on the card title and make up the
-    //     //           bulk of the card's content.
-    //     //         </Card.Text>
-    //     //         <Button variant="primary">Go somewhere</Button>
-    //     //       </Card.Body>
-    //     //     </Card>
-    //     //   );
-    //     //   }
-    //     // )
-    // }
-    // </>
-    // <div className="app">
-    //   <div>The List contains:</div>
-    //   {renderList}
-    // </div>
-    <div className='my-2' key={props.id}>
-      <Card>
-        {/* {console.log(props.image)} */}
-        <Card.Img variant="top" src={props.image} />
-        <Card.Body>
-          <Card.Title>{props.name}</Card.Title>
-          <Card.Text>
-            <span>cycle: {props.cycle}</span>
-            <br />
-            <span>watering: {props.watering}</span>
-          </Card.Text>
-          <Button variant="success">
-            <Link to={`/plants/${props.id}`}>Know More</Link>
-          </Button>
-        </Card.Body>
-      </Card>
-    </div>
-  );
+
+
+  // <>
+  //   {
+  //     // plants.map((item, index) => {
+  //     //   return (
+  //     //     <Card key={item['id']}>
+  //     //       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+  //     //       <Card.Body>
+  //     //         <Card.Title>{item['name']}</Card.Title>
+  //     //         <Card.Text>
+  //     //           Some quick example text to build on the card title and make up the
+  //     //           bulk of the card's content.
+  //     //         </Card.Text>
+  //     //         <Button variant="primary">Go somewhere</Button>
+  //     //       </Card.Body>
+  //     //     </Card>
+  //     //   );
+  //     //   }
+  //     // )
+  // }
+  // </>
+  // <div className="app">
+  //   <div>The List contains:</div>
+  //   {renderList}
+  // </div>
 
 
   // useEffect(() => {

@@ -34,17 +34,17 @@ class PlantDetail(models.Model):
     flowering_season = models.CharField(max_length=255, null=True)
     fruit = models.BooleanField(null=True)
     edible_fruit = models.BooleanField( null=True)
-    # fruiting_season = models.JSONField(max_length=255, null=True)
-    # attracts = models.JSONField(max_length=255, null=True)
     growth_rate = models.CharField(max_length=255, null=True)
     maintenance = models.CharField(max_length=255, null=True)
     medicinal = models.BooleanField( null=True)
     poisonous_to_humans = models.BooleanField( null=True)
     poisonous_to_pets = models.BooleanField( null=True)
     thorny = models.BooleanField( null=True)
-    # rare = models.BooleanField( null=True)
     indoor = models.BooleanField( null=True)
     care_level = models.CharField(max_length=255, null=True)
+    # fruiting_season = models.JSONField(max_length=255, null=True)
+    # attracts = models.JSONField(max_length=255, null=True)
+    # rare = models.BooleanField( null=True)
 
 
 # def set_fruiting_season (self, lst):

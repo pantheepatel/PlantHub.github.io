@@ -18,23 +18,16 @@ export default function App() {
       <Router>
         <Header></Header>
         <Routes>
+          {/* home page will displayed having overview of all pages */}
           <Route path='' element={<Home />} />
-          <Route path='plants' element={<Plants />} >
-            <Route path='' element={<Plants />}></Route>
-            {/* <Route path='/:id' element={<DetailedPage />}></Route> */}
-          </Route>
+          {/* plants overview page will display plants with overview */}
+          <Route path='plants' element={<Plants />} ></Route>
+          {/* whenever user clicks on particular plantCard it will redirect to its detailed page */}
           <Route path='plants/:id' element={<DetailedPage />}></Route>
-          {/* <Route path='plants/*' element={<DetailedPage />}></Route> */}
+          {/* contact page */}
           <Route path='contact' element={<Contact />} />
-          {/* <Route path='/' element={<Home />} /> */}
         </Routes>
       </Router>
-      {/* <Router>
-        <Header></Header>
-        <Plants></Plants>
-        <BodyMain></BodyMain>
-        <Footer></Footer>
-      </Router> */}
     </div>
   )
 }

@@ -9,10 +9,14 @@ function Header() {
     <div>
       <Navbar className='fixed-top' bg="dark" data-bs-theme="dark">
         <Container>
+          {/* to home */}
           <Navbar.Brand to="">Navbar</Navbar.Brand>
           <Nav className="me-auto">
+            {/* to home */}
             <NavLink to="">Home</NavLink>
+            {/* to plantList page */}
             <NavLink to="plants">Plants</NavLink>
+            {/* to contact page */}
             <NavLink to="contact">Contact Us</NavLink>
           </Nav>
         </Container>
