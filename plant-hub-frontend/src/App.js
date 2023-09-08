@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBro
 // import PlantCard from './components/PlantCard';
 // import Plants from './pages/Plants';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DetailedPage from './pages/DetailedPage';
 // import 'react-bootstrap' from ''
 export default function App() {
   return (
@@ -18,7 +19,12 @@ export default function App() {
         <Header></Header>
         <Routes>
           <Route path='' element={<Home />} />
-          <Route path='plant' element={<Plants />} />
+          <Route path='plants' element={<Plants />} >
+            <Route path='' element={<Plants />}></Route>
+            {/* <Route path='/:id' element={<DetailedPage />}></Route> */}
+          </Route>
+          <Route path='plants/:id' element={<DetailedPage />}></Route>
+          {/* <Route path='plants/*' element={<DetailedPage />}></Route> */}
           <Route path='contact' element={<Contact />} />
           {/* <Route path='/' element={<Home />} /> */}
         </Routes>

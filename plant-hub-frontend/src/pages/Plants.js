@@ -22,7 +22,7 @@ function Plants() {
 
       <Container>
 
-        <Row xs={6} md={3} lg={3}>
+        <Row xs={1} md={2} lg={3}>
           {
             plants.map((item) => {
               // <Col>
@@ -31,7 +31,7 @@ function Plants() {
               // </Col>
               // console.log(item)
               return (
-                <PlantCard id={item['id']} name={item['name']}></PlantCard>
+                <PlantCard id={item['id']} name={item['name']} cycle={item['cycle']} watering={item['watering']} image={item['image']}></PlantCard>
               )
             })
           }

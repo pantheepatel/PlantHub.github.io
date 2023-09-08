@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBrowserRouter,NavLink } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,13 +7,13 @@ function Header() {
 
   return (
     <div>
-      <Navbar bg="dark" data-bs-theme="dark">
+      <Navbar className='fixed-top' bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand to="">Navbar</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link to="">Home</Nav.Link>
-            <Nav.Link to="plants">Features</Nav.Link>
-            <Nav.Link to="contact">Pricing</Nav.Link>
+            <NavLink to="">Home</NavLink>
+            <NavLink to="plants">Plants</NavLink>
+            <NavLink to="contact">Contact Us</NavLink>
           </Nav>
         </Container>
       </Navbar>

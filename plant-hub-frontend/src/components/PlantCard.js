@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 // import Plant from '../interfaces/Plant';
+import { plantData } from '../services/PlantDetail';
+
 function PlantCard(props) {
   // const [plantName, setPlantName] = useState(null)
   // const [plantId, setPlantId] = useState(null)
@@ -13,16 +16,15 @@ function PlantCard(props) {
   //   return (
   //     <div>{item}</div>
   //   )
-
   // }
-
   // )
-
+  // function passID(id){
+  //   console.log('id is : ',id)
+  // }
   return (
     // <>
     //   {
     //     // plants.map((item, index) => {
-
     //     //   return (
     //     //     <Card key={item['id']}>
     //     //       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -36,32 +38,28 @@ function PlantCard(props) {
     //     //       </Card.Body>
     //     //     </Card>
     //     //   );
-
-
     //     //   }
-
     //     // )
-
-
-
-
     // }
     // </>
-
     // <div className="app">
     //   <div>The List contains:</div>
     //   {renderList}
     // </div>
-    <div>
-      <Card key={props.id}>
-        {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+    <div className='my-2' key={props.id}>
+      <Card>
+        {/* {console.log(props.image)} */}
+        <Card.Img variant="top" src={props.image} />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            <span>cycle: {props.cycle}</span>
+            <br />
+            <span>watering: {props.watering}</span>
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="success">
+            <Link to={`/plants/${props.id}`}>Know More</Link>
+          </Button>
         </Card.Body>
       </Card>
     </div>

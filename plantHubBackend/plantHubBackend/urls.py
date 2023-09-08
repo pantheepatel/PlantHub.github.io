@@ -20,5 +20,10 @@ from apiPlantHub import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('data/', views.fetchPlant,name='data'),
+    path('data/', views.fetchPlants,name='data'),
+    path('plantData/', views.fetchPlantDetails,name='data'),
+    path('plantData/<int:id>/',views.fetchPlant,name='plantData'),
+
+    path('reload/',views.reloadData,name='reload'),
+    path('reloadPlants/',views.reloadDataEachPlant,name='reloadPlants'),
 ]
