@@ -11,15 +11,16 @@ function Plants() {
 
   // whenever we get the data from api call it will be stored in plants array with the help of use state
   useEffect(() => {
-    plantList()
-      .then((res) => setPlants(res.data['plantList']))
+    plantList().then(response => {
+        // console.log(response)
+        setPlants(response.data['plantList'])
+      })
       // whenever we catch any error it will be set to error string
       .catch(err => {
         setError(err.message);
         console.log(err)
       });
   }, []);
-
   return (
     <div>
       <Container>

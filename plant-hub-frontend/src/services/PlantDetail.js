@@ -2,7 +2,7 @@ import axios from "axios";
 
 // api for list view of plant list page
 export const plantList=()=>{
-    axios.get("http://127.0.0.1:8000/data/");
+    return axios.get(`http://127.0.0.1:8000/data/`);
 }
 
 // this is the api that will get all the required details of plant with id

@@ -11,14 +11,23 @@ def reloadData(request):
     print(data_)
     # Store the data in the database
     # plants = []
+    id=0
     for plant in data_['data']:
         # print(plant['common_name'])
         # plant_detail={'id': plant['id'],'name': plant['common_name']}
         # plants.append(plant_detail)
-        Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
-                             watering=plant['watering'], image=plant['default_image']['regular_url'])
+        if(plant['default_image']) is not None:
+            Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
+                             watering=plant['watering'], image=plant['default_image']['regular_url'], sunlight=plant['sunlight'])
+        else:
+            Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
+                             watering=plant['watering'], image='', sunlight=plant['sunlight'])
+        # if((plant['default_image'])!=""):
+        #     print(plant['default_image']['regular_url'])
+        # else:print('null')
         #  sunlight=plant['sunlight']
     return JsonResponse({'success': True})
+    # return JsonResponse({"plantList": list(Plant)}, safe=False)
     # return JsonResponse({"plantList": list(Plant)})
     # return render(request, 'http://localhost:3000/', {'plant': Plant})
     # return JsonResponse(Plant, safe=False)
