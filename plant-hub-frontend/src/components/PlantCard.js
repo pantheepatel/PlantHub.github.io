@@ -1,14 +1,24 @@
 // this component is to render overview in plantList page
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 
 function PlantCard(props) {
+  // JSON.parse(typeof(props.image))
+  // console.log(JSON.stringify(props.image))
+  // console.log(JSON.parse(props.image))
+  // console.log(json(props.image))
+  // const data=props.image
+  // const data1=JSON.stringify(data)
+  // const data2=JSON.parse(data1)
+  // // console.log(JSON.stringify(data))
+  // console.log(typeof(data2))
+  // console.log(props.image['original_url'])
   return (
     <div className='my-2' key={props.id}>
       <Card>
-        <Card.Img variant="top" src={props.image} />
+        <Card.Img variant="top" src={props.image['original_url']} />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
           <Card.Text>

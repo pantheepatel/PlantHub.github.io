@@ -13,39 +13,61 @@ def reloadData(request):
     # plants = []
     id=0
     for plant in data_['data']:
+        # result={}
+        for key in plant:
+            if plant[key] is None:
+                plant[key]='none'
+                print(plant[key])
+        #     if value is None:
+        #         value = ''
+        #     result[key] = value
+        Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
+                              watering=plant['watering'], image=plant['default_image'], sunlight=plant['sunlight'])
+        # print('plant:------------------------------------------------------',plant)
+        
+    return JsonResponse({'success': True})
         # print(plant['common_name'])
         # plant_detail={'id': plant['id'],'name': plant['common_name']}
         # plants.append(plant_detail)
-        if(plant['default_image']) is not None:
-            Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
-                             watering=plant['watering'], image=plant['default_image']['regular_url'], sunlight=plant['sunlight'])
-        else:
-            Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
-                             watering=plant['watering'], image='', sunlight=plant['sunlight'])
+        # if(plant['default_image']) is not None:
+        # # else:
+        #     Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
+        #                      watering=plant['watering'], image='', sunlight=plant['sunlight'])
         # if((plant['default_image'])!=""):
         #     print(plant['default_image']['regular_url'])
         # else:print('null')
         #  sunlight=plant['sunlight']
-    return JsonResponse({'success': True})
     # return JsonResponse({"plantList": list(Plant)}, safe=False)
     # return JsonResponse({"plantList": list(Plant)})
     # return render(request, 'http://localhost:3000/', {'plant': Plant})
     # return JsonResponse(Plant, safe=False)
 
 
-def reloadDataEachPlant(request, fromId=1, toId=3):
+def reloadDataEachPlant(request, fromId=3, toId=31):
     for id in range(fromId, toId):
         url = 'https://perenual.com/api/species/details/' + \
             str(id)+'?key=sk-XI3m64f21258ee70e1780'
         response = requests.get(url)
         data_ = response.json()
+        # print(PlantDetail.objects.values_list)
+        # print(PlantDetail.)
+        for key in data_:
+
+            # if PlantDetail.objects not in data_:
+            #     # data_[key]='none' or False
+            #     # print(key,data_[key])
+            #     print(PlantDetail.objects)
+            if data_[key] is None:
+                data_[key]='none'
+                print(key,data_[key])
+        
         PlantDetail.objects.create(
             id=data_['id'],
             name=data_['common_name'],
             cycle=data_['cycle'],
             watering=data_['watering'],
             description=data_['description'],
-            image=data_['default_image']['regular_url'],
+            image=data_['default_image'],
             type=data_['type'],
             flowers=data_['flowers'],
             flowering_season=data_['flowering_season'],
@@ -58,7 +80,10 @@ def reloadDataEachPlant(request, fromId=1, toId=3):
             poisonous_to_pets=data_['poisonous_to_pets'],
             thorny=data_['thorny'],
             indoor=data_['indoor'],
-            care_level=data_['care_level']
+            care_level=data_['care_level'],
+            attracts=data_['attracts'],
+            # fruiting_season=data_['fruiting_season'] or '',
+            # rare=data_['rare'] or 0,
         )
         print('success:', id)
     return JsonResponse({'success': True})
