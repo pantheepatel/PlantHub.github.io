@@ -1,15 +1,17 @@
 // to give overview of website
 import React from 'react'
-
+import LogOut from './LogOut'
 function Home() {
-  const logOut=()=>{
-    localStorage.clear()
-    window.location.reload()
-  }
+  // const logOut=()=>{
+  //   localStorage.clear()
+  //   window.location.reload()
+  // }
 
   return (
     <div>Home
-      <button onClick={logOut}>Log out</button>
+      <br />
+      {/* <LogOut/> */}
+      {/* <button onClick={logOut}>Log out</button> */}
     </div>
   )
 }

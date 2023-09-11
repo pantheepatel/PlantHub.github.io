@@ -11,7 +11,8 @@ import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBro
 // import Plants from './pages/Plants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DetailedPage from './pages/DetailedPage';
-import SignIn from './pages/SignIn';
+import LogIn from './pages/LogIn';
+import LogOut from './pages/LogOut';
 // import 'react-bootstrap' from ''
 export default function App() {
   return (
@@ -27,7 +28,7 @@ export default function App() {
           <Route path='plants/:id' element={<DetailedPage />}></Route>
           {/* contact page */}
           <Route path='contact' element={<Contact />} />
-          <Route path='signIn' element={<SignIn />} />
+          <Route path='auth' element={<LogIn />} />  
         </Routes>
       </Router>
     </div>

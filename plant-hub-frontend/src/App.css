@@ -1,3 +1,10 @@
+:root{
+  --primary:#3D9970;
+  --secondary:aliceblue;
+  --darkgreen: #093a3e ;
+}
+
+
 /* @import "~bootstrap/scss/bootstrap"; */
 .App {
   text-align: center;
@@ -38,8 +45,46 @@
   }
 }
 
+a{
+  color: var(--primary);
+  text-decoration: none;
+
+}
+
+.header{
+  /* background: linear-gradient(to bottom, var(--primary), #deeefc); */
+  background-color: var(--secondary);
+}
+
 .navLink{
-  color: #3D9970;
+  color: var(--primary);
   text-decoration: none;
   font-size:medium;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+}
+.navLink span{
+  margin-left: 0.3rem;
+
+}
+.navLink:hover{
+  /* margin-left: 0.3rem; */
+  /* transform: scale(1.1);
+  transition-duration: 0.3s; */
+  color: var(--darkgreen);
+}
+
+.contactUsBg::before {
+  content: "";
+  background: url("../src/images/hero-img-2.jpg") rgba(151, 222, 164, 0.212);
+  background-blend-mode: multiply;
+  background-size: cover;
+  /* position:static; */
+  position: absolute;
+  top: -7rem;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.75;
 }
