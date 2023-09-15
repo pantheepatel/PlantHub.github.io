@@ -52,12 +52,21 @@ a {
 
 }
 
-.header {
+.header-color {
   /* background: linear-gradient(to bottom, var(--primary), #deeefc); */
-  background-color: var(--secondary);
+  /* background-color: #3d99702a; */
+  background-color: rgba(0, 0, 0, 0.114);
 }
-
-.navLink {
+.header-color-scroll {
+  background-color: rgba(0, 0, 0, 0.838);
+}
+.strip-color{
+  background-color: #3d9970f6;
+  color: whitesmoke;
+  align-content: center;
+  justify-content: center;
+}
+.navLink,.navLink-scroll {
   color: var(--primary);
   text-decoration: none;
   font-size: medium;
@@ -66,16 +75,16 @@ a {
   display: flex;
 }
 
-.navLink span {
+.navLink span,.navLink-scroll span{
   margin-left: 0.3rem;
 
 }
 
-.navLink:hover {
-  /* margin-left: 0.3rem; */
-  /* transform: scale(1.1);
-  transition-duration: 0.3s; */
+.navLink:hover,.navLink:active {
   color: var(--darkgreen);
+}
+.navLink-scroll:hover,.navLink-scroll:active{
+  color: azure;
 }
 
 .contactUsBg::before {

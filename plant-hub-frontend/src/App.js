@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DetailedPage from './pages/DetailedPage';
 import LogIn from './pages/LogIn';
 import LogOut from './pages/LogOut';
+import NotFound from './pages/NotFound';
 // import 'react-bootstrap' from ''
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           {/* home page will displayed having overview of all pages */}
           <Route path='' element={<Home />} />
           {/* plants overview page will display plants with overview */}
+          {/* <Route path='plants' element={<Plants />} ></Route> */}
           <Route path='plants' element={<Plants />} ></Route>
           {/* <Route path={`plants&page=${page}`} element={<Plants />} ></Route> */}
           {/* whenever user clicks on particular plantCard it will redirect to its detailed page */}
@@ -30,6 +32,7 @@ export default function App() {
           {/* contact page */}
           <Route path='contact' element={<Contact />} />
           <Route path='auth' element={<LogIn />} />  
+          <Route path='*' element={<NotFound/>}></Route>
         </Routes>
       </Router>
     </div>

@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
@@ -111,13 +112,14 @@ def fetchPlant(request, id):
 
 
 def fetchPlantsPage(request, page):
-    plantDataArray=[]
+    plantDataArray = []
     for plant in range((page*30)+1, ((page+1)*30)+1):
         plantData = PlantDetail.objects.filter(id=plant).values()
     # return JsonResponse({"plantDetails": list(plantData)})
-        plantDataArray.append(list(plantData))
-    return JsonResponse({"plantDetails": list(plantDataArray)})
-    
+        # plantDataArray.append(list(plantData))
+        # plantDataArray=json.load(plantData)
+        plantDataArray.extend(plantData)
+    return JsonResponse({"plantList": list(plantDataArray)})
 
 
 # from django.shortcuts import render

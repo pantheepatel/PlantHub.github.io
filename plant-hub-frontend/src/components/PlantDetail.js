@@ -10,10 +10,13 @@ function PlantDetail(props) {
 	const goBack = () => {
 		navigate(-1);
 	}
+  
+  // let history = useHistory();
 
   return (
     <div>
       <div className='my-2' key={props.id}>
+        {/* <button onClick={()=>history.goBack()}><KeyboardBackspaceIcon/>back</button> */}
         <button onClick={goBack}><KeyboardBackspaceIcon/>back</button>
         <Card>
           {/* {console.log('into plant detail file: ',props.image.original_url)} */}

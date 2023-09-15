@@ -11,6 +11,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import wordmark from '../images/planthub-logo-zip-file/wordmark.png'
 import wordmark2 from '../images/planthub-logo-zip-file/wordmark-2.png'
 import wordmark3 from '../images/planthub-logo-zip-file/wordmark-3.png'
+// import { useState,useEffect } from 'react';
 // import SignIn from '../pages/SignIn';
 // import '../App.css'
 // import { localStorage } from 
@@ -36,11 +37,21 @@ function Header() {
   var isLoggedIn = false
   if (localStorage.getItem('email')) { isLoggedIn = true }
 
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+      setColorchange(true);
+    }
+    else {
+      setColorchange(false);
+    }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
 
 
   return (
     <div>
-      <Navbar expand="lg" className='fixed-top header' bg="" data-bs-theme="">
+      <Navbar expand="lg" className={colorChange ? 'header-color-scroll fixed-top' : 'header-color fixed-top'} bg="" data-bs-theme="">
         <Container className=''>
           <Navbar.Brand>
             <Link to=''>
@@ -50,14 +61,14 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="me-7 gap-1.5 lg:gap-5">
-              <NavLink className='navLink' to=""><HomeIcon /> <span>Home</span></NavLink>
-              <NavLink className='navLink' to="plants"><ForestIcon /> <span>Plants</span></NavLink>
-              {/* <NavLink className='navLink' to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
-              <NavLink className='navLink' to="contact"><SupportAgentIcon /> <span>Contact Us</span></NavLink>
-              <NavLink className='navLink' to="auth">
-              <PersonIcon />
+              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><HomeIcon /> <span>Home</span></NavLink>
+              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plants"><ForestIcon /> <span>Plants</span></NavLink>
+              {/* <NavLink className={colorChange?'navLink-scroll':'navLink'} to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
+              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="contact"><SupportAgentIcon /> <span>Contact Us</span></NavLink>
+              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="auth">
+                <PersonIcon />
                 {
-                  isLoggedIn? 'LogOut': 'Login'
+                  isLoggedIn ? 'LogOut' : 'Login'
                 }
               </NavLink>
             </Nav>
