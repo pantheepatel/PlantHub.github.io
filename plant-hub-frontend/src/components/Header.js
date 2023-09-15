@@ -45,7 +45,6 @@ function Header() {
           <Navbar.Brand>
             <Link to=''>
               <img src={wordmark3} alt="plantHub" className='App-logo' />
-              {/* <Navbar.Img src='../../public/planthub-logo-zip-file/wordmark.png'></Navbar.Img> */}
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -53,6 +52,7 @@ function Header() {
             <Nav className="me-7 gap-1.5 lg:gap-5">
               <NavLink className='navLink' to=""><HomeIcon /> <span>Home</span></NavLink>
               <NavLink className='navLink' to="plants"><ForestIcon /> <span>Plants</span></NavLink>
+              {/* <NavLink className='navLink' to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
               <NavLink className='navLink' to="contact"><SupportAgentIcon /> <span>Contact Us</span></NavLink>
               <NavLink className='navLink' to="auth">
               <PersonIcon />
@@ -60,14 +60,6 @@ function Header() {
                   isLoggedIn? 'LogOut': 'Login'
                 }
               </NavLink>
-              {/* {
-                isLoggedIn ?
-                  <NavLink className='navLink' to="logout"><PersonIcon /> Log Out</NavLink>
-                  :
-                  <NavLink className='navLink' to="login"><PersonIcon /> Log In</NavLink>
-              } */}
-              {/* <NavLink className='navLink' to="signIn"><PersonIcon /> Sign In</NavLink> */}
-
             </Nav>
           </Navbar.Collapse>
         </Container>

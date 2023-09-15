@@ -1,13 +1,23 @@
 // this component is to render all the details of plants in details to DetailsPage of plant
 import React from 'react'
-import { Link, json } from 'react-router-dom';
+import { Link, json, useNavigate } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+
 function PlantDetail(props) {
+  
+	const navigate = useNavigate();
+	const goBack = () => {
+		navigate(-1);
+	}
+
   return (
     <div>
       <div className='my-2' key={props.id}>
+        <button onClick={goBack}><KeyboardBackspaceIcon/>back</button>
         <Card>
-          {/* <Card.Img variant="top" src={props.image['original_url']} /> */}
+          {/* {console.log('into plant detail file: ',props.image.original_url)} */}
+          {/* <Card.Img variant="top" src={props.image.original_url} /> */}
           <Card.Body>
             <Card.Title>{props.name}</Card.Title>
             <Card.Text>

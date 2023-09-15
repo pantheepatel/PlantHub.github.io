@@ -62,6 +62,7 @@ function DetailedPage() {
                 <p>care_level :- {plantData['care_level']}</p>
                 <p></p> 
                 */}
+                {console.log('plantData: ',plantData['image'])}
                 <Container>
                     <PlantDetail id={plantData['id']}
                         name={plantData['name']}
@@ -81,7 +82,8 @@ function DetailedPage() {
                         poisonous_to_pets={plantData['poisonous_to_pets']}
                         thorny={plantData['thorny']}
                         indoor={plantData['indoor']}
-                        care_level={plantData['care_level']}></PlantDetail>
+                        care_level={plantData['care_level']}>
+                    </PlantDetail>
                 </Container>
             </div>
 

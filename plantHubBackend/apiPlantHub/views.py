@@ -5,45 +5,47 @@ from .models import Plant, PlantDetail
 
 
 def reloadData(request):
-    url = 'https://perenual.com/api/species-list?page=1&key=sk-XI3m64f21258ee70e1780'
-    response = requests.get(url)
-    data_ = response.json()
-    print(data_)
-    # Store the data in the database
-    # plants = []
-    id=0
-    for plant in data_['data']:
-        # result={}
-        for key in plant:
-            if plant[key] is None:
-                plant[key]='none'
-                print(plant[key])
-        #     if value is None:
-        #         value = ''
-        #     result[key] = value
-        Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
-                              watering=plant['watering'], image=plant['default_image'], sunlight=plant['sunlight'])
-        # print('plant:------------------------------------------------------',plant)
-        
+    for page in range(2, 8):
+        url = 'https://perenual.com/api/species-list?page=1&key=sk-XI3m64f21258ee70e1780&page=' + \
+            str(page)
+        response = requests.get(url)
+        data_ = response.json()
+        print(data_)
+        # Store the data in the database
+        # plants = []
+        id = 0
+        for plant in data_['data']:
+            # result={}
+            for key in plant:
+                if plant[key] is None:
+                    plant[key] = 'none'
+                    print(plant[key])
+            #     if value is None:
+            #         value = ''
+            #     result[key] = value
+            Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
+                                 watering=plant['watering'], image=plant['default_image'], sunlight=plant['sunlight'])
+            # print('plant:------------------------------------------------------',plant)
+
     return JsonResponse({'success': True})
-        # print(plant['common_name'])
-        # plant_detail={'id': plant['id'],'name': plant['common_name']}
-        # plants.append(plant_detail)
-        # if(plant['default_image']) is not None:
-        # # else:
-        #     Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
-        #                      watering=plant['watering'], image='', sunlight=plant['sunlight'])
-        # if((plant['default_image'])!=""):
-        #     print(plant['default_image']['regular_url'])
-        # else:print('null')
-        #  sunlight=plant['sunlight']
+    # print(plant['common_name'])
+    # plant_detail={'id': plant['id'],'name': plant['common_name']}
+    # plants.append(plant_detail)
+    # if(plant['default_image']) is not None:
+    # # else:
+    #     Plant.objects.create(id=plant['id'], name=plant['common_name'], cycle=plant['cycle'],
+    #                      watering=plant['watering'], image='', sunlight=plant['sunlight'])
+    # if((plant['default_image'])!=""):
+    #     print(plant['default_image']['regular_url'])
+    # else:print('null')
+    #  sunlight=plant['sunlight']
     # return JsonResponse({"plantList": list(Plant)}, safe=False)
     # return JsonResponse({"plantList": list(Plant)})
     # return render(request, 'http://localhost:3000/', {'plant': Plant})
     # return JsonResponse(Plant, safe=False)
 
 
-def reloadDataEachPlant(request, fromId=3, toId=31):
+def reloadDataEachPlant(request, fromId=31, toId=211):
     for id in range(fromId, toId):
         url = 'https://perenual.com/api/species/details/' + \
             str(id)+'?key=sk-XI3m64f21258ee70e1780'
@@ -58,9 +60,9 @@ def reloadDataEachPlant(request, fromId=3, toId=31):
             #     # print(key,data_[key])
             #     print(PlantDetail.objects)
             if data_[key] is None:
-                data_[key]='none'
-                print(key,data_[key])
-        
+                data_[key] = 'none'
+                print(key, data_[key])
+
         PlantDetail.objects.create(
             id=data_['id'],
             name=data_['common_name'],
@@ -92,6 +94,7 @@ def reloadDataEachPlant(request, fromId=3, toId=31):
 # to get overview of all plants
 def fetchPlants(request):
     plant = Plant.objects.all().values()
+    # plant = Plant.objects.filter(id=1)
     return JsonResponse({"plantList": list(plant)})
 
 
@@ -105,6 +108,16 @@ def fetchPlantDetails(request):
 def fetchPlant(request, id):
     plant = PlantDetail.objects.filter(id=id).values()
     return JsonResponse({"plantDetails": list(plant)})
+
+
+def fetchPlantsPage(request, page):
+    plantDataArray=[]
+    for plant in range((page*30)+1, ((page+1)*30)+1):
+        plantData = PlantDetail.objects.filter(id=plant).values()
+    # return JsonResponse({"plantDetails": list(plantData)})
+        plantDataArray.append(list(plantData))
+    return JsonResponse({"plantDetails": list(plantDataArray)})
+    
 
 
 # from django.shortcuts import render

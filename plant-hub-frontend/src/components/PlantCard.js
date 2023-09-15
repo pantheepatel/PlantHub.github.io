@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { Link, json } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import imageAlt from "../images/planthub-logo-zip-file/png/logo-color.png"
 
 function PlantCard(props) {
   // JSON.parse(typeof(props.image))
@@ -18,9 +19,9 @@ function PlantCard(props) {
   return (
     <div className='my-2' key={props.id}>
       <Card>
-        <Card.Img variant="top" src={props.image['original_url']} />
+        <Card.Img variant="top" src={props.image['original_url'] ? props.image['original_url'] : imageAlt} className='object-fit' />
         <Card.Body>
-          <Card.Title>{props.name}</Card.Title>
+          <Card.Title className='lineClamp'>{props.name}</Card.Title>
           <Card.Text>
             <span>cycle: {props.cycle}</span>
             <br />

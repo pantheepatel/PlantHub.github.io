@@ -20,7 +20,7 @@ function Plants() {
         setError(err.message);
         console.log(err)
       });
-  }, []);
+  },[]);
   return (
     <div>
       <Container>

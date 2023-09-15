@@ -24,6 +24,7 @@ export default function App() {
           <Route path='' element={<Home />} />
           {/* plants overview page will display plants with overview */}
           <Route path='plants' element={<Plants />} ></Route>
+          {/* <Route path={`plants&page=${page}`} element={<Plants />} ></Route> */}
           {/* whenever user clicks on particular plantCard it will redirect to its detailed page */}
           <Route path='plants/:id' element={<DetailedPage />}></Route>
           {/* contact page */}
