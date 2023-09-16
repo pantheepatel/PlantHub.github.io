@@ -14,6 +14,8 @@ import DetailedPage from './pages/DetailedPage';
 import LogIn from './pages/LogIn';
 import LogOut from './pages/LogOut';
 import NotFound from './pages/NotFound';
+import PlantCare from './pages/PlantCare';
+import FAQ from './pages/FAQ';
 // import 'react-bootstrap' from ''
 export default function App() {
   return (
@@ -30,6 +32,8 @@ export default function App() {
           {/* whenever user clicks on particular plantCard it will redirect to its detailed page */}
           <Route path='plants/:id' element={<DetailedPage />}></Route>
           {/* contact page */}
+          <Route path='plantcare' element={<PlantCare />} />  
+          <Route path='faq' element={<FAQ />} />  
           <Route path='contact' element={<Contact />} />
           <Route path='auth' element={<LogIn />} />  
           <Route path='*' element={<NotFound/>}></Route>

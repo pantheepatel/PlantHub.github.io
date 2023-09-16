@@ -66,7 +66,7 @@ a {
   align-content: center;
   justify-content: center;
 }
-.navLink,.navLink-scroll {
+.navLink,.navLink-scroll,#nav-dropdown {
   color: var(--primary);
   text-decoration: none;
   font-size: medium;
@@ -75,18 +75,17 @@ a {
   display: flex;
 }
 
-.navLink span,.navLink-scroll span{
+.navLink span,.navLink-scroll span,#nav-dropdown{
   margin-left: 0.3rem;
 
 }
 
-.navLink:hover,.navLink:active {
+.navLink:hover,.navLink.active {
   color: var(--darkgreen);
 }
-.navLink-scroll:hover,.navLink-scroll:active{
+.navLink-scroll:hover,.navLink-scroll.active{
   color: azure;
 }
-
 .contactUsBg::before {
   content: "";
   background: url("../src/images/hero-img-2.jpg") rgba(151, 222, 164, 0.212);
@@ -109,3 +108,40 @@ a {
   line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+
+
+/* for plant care page */
+
+.nav-pills-custom .nav-link {
+    color: #aaa;
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link.active {
+    color: #45b649;
+    background: #fff;
+}
+
+
+/* Add indicator arrow for the active tab */
+@media (min-width: 992px) {
+    .nav-pills-custom .nav-link::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #fff;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+}
+
+.nav-pills-custom .nav-link.active::before {
+    opacity: 1;
+}
+

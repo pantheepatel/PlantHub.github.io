@@ -23,7 +23,6 @@ class Plant(models.Model):
     def __str__(self):
         return self.name,self.image
 
-
 # to define what are the fields that will be displayed in detailed page (only these fields will be saved to database)
 class PlantDetail(models.Model):
     id = models.PositiveIntegerField(primary_key=True)

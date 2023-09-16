@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Route, Routes, Link, RouterProvider, createBro
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { NavDropdown } from 'react-bootstrap';
 import HomeIcon from '@mui/icons-material/Home';
 import ForestIcon from '@mui/icons-material/Forest';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import PersonIcon from '@mui/icons-material/Person';
+import SpaIcon from '@mui/icons-material/Spa';
+import QuizIcon from '@mui/icons-material/Quiz';
 // import logo from '../../public/planthub-logo-zip-file/wordmark.png';
 import wordmark from '../images/planthub-logo-zip-file/wordmark.png'
 import wordmark2 from '../images/planthub-logo-zip-file/wordmark-2.png'
@@ -61,16 +64,23 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="me-7 gap-1.5 lg:gap-5">
-              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><HomeIcon /> <span>Home</span></NavLink>
+              {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><HomeIcon /> <span>Home</span></NavLink> */}
               <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plants"><ForestIcon /> <span>Plants</span></NavLink>
-              {/* <NavLink className={colorChange?'navLink-scroll':'navLink'} to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
-              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="contact"><SupportAgentIcon /> <span>Contact Us</span></NavLink>
+              <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plantcare"><SpaIcon /> <span>Plant Care</span></NavLink>
+              <NavDropdown title={"Other"} className='nav-dropdown' id="nav-dropdown">
+                <NavDropdown.Item>
+                  <NavLink className='navLink' to="faq"><QuizIcon /> <span>FAQ</span></NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <NavLink className='navLink' to="contact"><SupportAgentIcon /> <span>Contact Us</span></NavLink>
+                </NavDropdown.Item>
+              </NavDropdown>
               <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="auth">
                 <PersonIcon />
-                {
-                  isLoggedIn ? 'LogOut' : 'Login'
-                }
+                {isLoggedIn ? 'LogOut' : 'Login'}
               </NavLink>
+
+              {/* <NavLink className={colorChange?'navLink-scroll':'navLink'} to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

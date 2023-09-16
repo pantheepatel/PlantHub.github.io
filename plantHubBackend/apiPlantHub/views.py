@@ -46,7 +46,7 @@ def reloadData(request):
     # return JsonResponse(Plant, safe=False)
 
 
-def reloadDataEachPlant(request, fromId=31, toId=211):
+def reloadDataEachPlant(request, fromId=211, toId=217):
     for id in range(fromId, toId):
         url = 'https://perenual.com/api/species/details/' + \
             str(id)+'?key=sk-XI3m64f21258ee70e1780'
