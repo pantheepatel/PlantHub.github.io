@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apiPlantHub', # name of my main app
     'corsheaders' # TODO: ask
+    # 'django_filters', # to filter data
 ]
 
 MIDDLEWARE = [

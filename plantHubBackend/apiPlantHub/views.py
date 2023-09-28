@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
 from .models import Plant, PlantDetail
+from django.db.models import Q
 
 
 def reloadData(request):
@@ -111,15 +112,49 @@ def fetchPlant(request, id):
     return JsonResponse({"plantDetails": list(plant)})
 
 
-def fetchPlantsPage(request, page):
+# def fetchPlantsPage(request, page):
+#     plantDataArray = []
+#     for plant in range((page*30)+1, ((page+1)*30)+1):
+#         plantData = PlantDetail.objects.filter(id=plant).values()
+#     # return JsonResponse({"plantDetails": list(plantData)})
+#         # plantDataArray.append(list(plantData))
+#         # plantDataArray=json.load(plantData)
+#         plantDataArray.extend(plantData)
+#     return JsonResponse({"plantList": list(plantDataArray)})
+
+
+def searchPlant(request, searchTerm):
     plantDataArray = []
-    for plant in range((page*30)+1, ((page+1)*30)+1):
-        plantData = PlantDetail.objects.filter(id=plant).values()
+    plantData = PlantDetail.objects.filter(name__contains=searchTerm).values()
     # return JsonResponse({"plantDetails": list(plantData)})
-        # plantDataArray.append(list(plantData))
-        # plantDataArray=json.load(plantData)
+    # plantDataArray.append(list(plantData))
+    # plantDataArray=json.load(plantData)
+    plantDataArray.extend(plantData)
+    return JsonResponse({"plantList": list(plantDataArray)})
+
+
+def fetchPlantsPage(requests, page):
+    searchTerm=requests.GET.get('search')
+    print(searchTerm)
+    plantDataArray = []
+    if searchTerm:
+        plants=Plant.objects.filter(name__contains=searchTerm).values()
+    else:
+        plants=Plant.objects.all().values()
+    plantDataLength=plants.count()
+    print(plantDataLength)
+    print(plants[0]['id'])
+    for plant in plants:
+        plantData = PlantDetail.objects.filter(id=plant['id']).values()
         plantDataArray.extend(plantData)
     return JsonResponse({"plantList": list(plantDataArray)})
+
+# def filterPlant(request, filter):
+#     plantDataArray = []
+#     # plantData = PlantDetail.objects.filter(Q(Plant.watering(filter)) | Q(Plant.sunlight(filter))).values()
+#     # if(file)
+#     plantDataArray.extend(plantData)
+#     return JsonResponse({"plantList": list(plantDataArray)})
 
 
 # from django.shortcuts import render

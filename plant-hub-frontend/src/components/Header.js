@@ -14,6 +14,7 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import wordmark from '../images/planthub-logo-zip-file/wordmark.png'
 import wordmark2 from '../images/planthub-logo-zip-file/wordmark-2.png'
 import wordmark3 from '../images/planthub-logo-zip-file/wordmark-3.png'
+import LanguageSwitcher from './LanguageSwitcher'
 // import { useState,useEffect } from 'react';
 // import SignIn from '../pages/SignIn';
 // import '../App.css'
@@ -61,6 +62,7 @@ function Header() {
               <img src={wordmark3} alt="plantHub" className='App-logo' />
             </Link>
           </Navbar.Brand>
+          <LanguageSwitcher/>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="me-7 gap-1.5 lg:gap-5">
@@ -79,6 +81,7 @@ function Header() {
                 <PersonIcon />
                 {isLoggedIn ? 'LogOut' : 'Login'}
               </NavLink>
+
 
               {/* <NavLink className={colorChange?'navLink-scroll':'navLink'} to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
             </Nav>

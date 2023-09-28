@@ -8,57 +8,7 @@ import { Container } from 'react-bootstrap';
 
 
 function PlantCare() {
-  // const details={
-  //   category:[],
-  //   description:[],
-  //   tips:{
-  //     tip1:[],
-  //     tip2:[],
-  //     tip3:[]
-  //   }
-  // }
-  // const details = {
-  //   category: ['Watering Wisdom', 'Light and Sunshine', 'Soil and Potting Perfection', 'Fertilizing Fundamentals', 'Pruning and Maintenance Mastery', 'Pest and Disease Defense', 'Seasonal Care Strategies'],
-  //   description: [
-  //     '"Watering Wisdom" is your ultimate guide to mastering the art of watering your plants effectively. In this category, we will delve into the nuances of providing the right amount of moisture to keep your plants thriving. Discover tips on determining the ideal watering frequency for different plant types, using the finger test to check soil moisture, and selecting the right water for your plants. Avoid common watering mistakes, such as overwatering or underwatering, and ensure that your plants receive the hydration they need for vibrant growth.',
-  //     '"Light and Sunshine" sheds light on the vital role that light plays in the lives of your plants. In this category, we explore the different light requirements of various plant species and provide solutions for optimizing their exposure to light. Learn how to match light levels to your plants preferences, where to place plants for the best light, and how to care for low-light-loving plants. With the right light, you will nurture lush and healthy indoor greenery.',
-  //     '"Soil and Potting Perfection" delves into the foundation of plant care—the soil. In this category, we will guide you in selecting the right soil for your plants, understanding when to repot, and choosing the perfect pot or container. Explore the importance of well-draining soil, repotting to prevent root-bound growth, and the significance of pots with proper drainage. With the right soil and potting practices, you will provide a nurturing environment for your green companions.',
-  //     '"Fertilizing Fundamentals" unlocks the secrets of plant nourishment. In this category, we will demystify fertilizers, explaining their role in plant growth, the different types available, and when and how to apply them. Discover a recommended fertilization schedule for various plant types, and learn to recognize signs of nutrient deficiencies. With proper fertilization, you will provide your plants with the essential nutrients they crave for robust health.',
-  //     '"Pruning and Maintenance Mastery" is your guide to shaping and nurturing your plants. In this category, we explore the benefits of regular pruning, explain when and how to trim effectively, and share insights into maintaining a clean and healthy plant environment. Discover the transformative power of pruning, the art of deadheading for continuous blooms, and the importance of keeping your plants free from dust and debris. With expert maintenance, you will promote vigorous and vibrant growth.',
-  //     '"Pest and Disease Defense" equips you with the tools and knowledge to protect your plants from common threats. In this category, we will help you identify notorious plant pests, understand their signs of infestation, and explore natural methods for effective pest control. Learn to recognize signs of diseases and implement preventive strategies. With the right defenses, you will maintain your plants health and vitality.',
-  //     '"Seasonal Care Strategies" is your compass for adapting plant care to the changing seasons. In this category, we will guide you through caring for your plants during winter, including indoor heating considerations. We will also help you prepare for spring growth spurt with tips on pruning and inspection. Whether it is navigating winter chill or embracing spring warmth, our seasonal strategies will empower you to provide optimal care for your plants year-round.',
-  //   ],
-  //   tips: {
-  //     tip1: [
-  //       'Water your plants thoroughly but ensure proper drainage to prevent root rot.',
-  //       'Understand the different light levels, from low to bright indirect light.',
-  //       'Choose well-draining soil tailored to your plant needs (e.g., cactus mix, potting mix).',
-  //       'Understand the purpose of fertilizers and their impact on plant growth.',
-  //       'Prune to remove dead or damaged growth and encourage new shoots.',
-  //       'Inspect your plants regularly for signs of pests like aphids and spider mites.',
-  //       'Adjust watering and humidity levels to accommodate indoor heating during winter.',
-  //     ],
-  //     tip2: [
-  //       'Adjust your watering schedule based on the season and plant type.',
-  //       'Rotate your plants regularly to ensure even light exposure.',
-  //       'Repot when the plant becomes root-bound or outgrows its current container.',
-  //       'Follow package instructions for fertilizer dosage and application.',
-  //       'Deadhead spent flowers to stimulate additional blooms.',
-  //       'Use natural remedies like neem oil or insecticidal soap to control common pests.',
-  //       'Prune and inspect your plants in spring to encourage healthy growth.',
-  //     ],
-  //     tip3: [
-  //       'Use a saucer or tray to catch excess water and prevent damage to surfaces.',
-  //       'Use sheer curtains or blinds to filter direct sunlight and prevent leaf burn.',
-  //       'Ensure your pots have drainage holes to prevent waterlogged soil.',
-  //       'Observe your plants for signs of nutrient deficiencies (e.g., yellowing leaves) and address them promptly.',
-  //       'Use a damp cloth to gently clean plant leaves and improve photosynthesis.',
-  //       'Prevent disease by avoiding overwatering and providing proper air circulation.',
-  //       'Consider repotting in early spring if necessary, before the growing season begins.',
-  //     ],
-  //   }
-  // }
-
+  
   const details = [
     {
       category: 'Watering Wisdom',

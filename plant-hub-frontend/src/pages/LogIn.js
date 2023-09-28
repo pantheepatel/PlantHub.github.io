@@ -11,7 +11,6 @@ function LogIn() {
             // setValue(data.user.email)
             // setIsLoggedIn(true)
             console.log('user is ', isLoggedIn)
-            console.log(data.user)
             // localStorage.setItem("user",{
             //     "email": data.user.email,
             //     "name": data.user.displayName,
@@ -19,6 +18,7 @@ function LogIn() {
             // })
             localStorage.setItem("email", data.user.email)
             localStorage.setItem("name", data.user.displayName)
+            localStorage.setItem("id",data.user.uid)
             data.user.phoneNumber ? localStorage.setItem("phone no", data.user.phoneNumber) : localStorage.setItem("phone no", 'none')
             // this.isLoggedIn= true
             window.location.reload()
@@ -48,6 +48,8 @@ function LogIn() {
                     <div>
                         <h4>
                             welcome {localStorage.getItem('name')}
+                            <br />
+                            id is {localStorage.getItem('id')}
                         </h4>
                         <p>Once you log out you have to login again! please be careful</p>
                     </div>
