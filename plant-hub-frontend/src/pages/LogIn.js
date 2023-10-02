@@ -49,13 +49,16 @@ function LogIn() {
                         <h4>
                             welcome {localStorage.getItem('name')}
                             <br />
-                            id is {localStorage.getItem('id')}
+                            {/* id is {localStorage.getItem('id')} */}
                         </h4>
                         <p>Once you log out you have to login again! please be careful</p>
                     </div>
                     :
                     <div>
-                        <p>you have to login</p>
+                        <p>you have to login to get these features:</p>
+                        <ul>
+                            <li>For plant details page.</li>
+                        </ul>
                     </div>
             }
 

@@ -80,8 +80,6 @@ function PlantCare() {
   return (
     <div>
       <Container className='justify-content-evenly'>
-        {/* {console.log(details[0]['category'])} */}
-
         <Tab.Container activeKey={key} id="left-tabs-example" defaultActiveKey={details[0]['category']}>
           <Row>
             <Col sm={3}>

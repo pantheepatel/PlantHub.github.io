@@ -51,7 +51,12 @@ a {
   text-decoration: none;
 
 }
-
+.text-darkGreen{
+  color: var(--darkgreen);
+}
+.text-lightGreen{
+  color: var(--primary);
+}
 .header-color {
   /* background: linear-gradient(to bottom, var(--primary), #deeefc); */
   /* background-color: #3d99702a; */
@@ -145,3 +150,51 @@ a {
     opacity: 1;
 }
 
+
+/* 3. Billboard
+/*----------------------------------------------*/
+
+/*------------ Icon Box -----------*/
+#billboard .icon-box .box-title {
+  font-family: var(--darkgreen);
+  font-size: 1.4em;
+  color: var(--primary)
+}
+#billboard .icon-box p,
+#billboard .icon-box .icon-number span {
+  font-family: var(--darkgreen);
+  font-size: 1.1em;
+}
+#billboard .icon-box p {
+  line-height: 1.5;
+}
+#billboard .icon-box .icon-number {
+   width: 60px;
+   height: 60px;
+}
+#billboard .icon-box .icon-content {
+   width: 70%;
+}
+
+
+/* 4. Featured Products
+/*----------------------------------------------*/
+#featured-products img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.product-position .card-body {
+  right: 0;
+  bottom: 70px;
+  left: 70px;
+}
+.product-position .card-body h2.section-title {
+  width: 350px;
+}
+@media screen and (max-width: 768px) {
+.product-position .card-body {
+  bottom: 10px;
+  left: 20px;
+}
+}

@@ -56,7 +56,9 @@ MIDDLEWARE = [
 
 # allowed origins means where can i watch my site
 CORS_ALLOWED_ORIGINS = [
+    # "http://localhost:3001",  # react local host
     "http://localhost:3000",  # react local host
+
 ]
 
 # allowed methods means which methods i want to use for data fetch and update

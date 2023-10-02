@@ -16,10 +16,13 @@ function PlantCard(props) {
   // // console.log(JSON.stringify(data))
   // console.log(typeof(data2))
   // console.log(props.image['original_url'])
+  var isLoggedIn = false
+  const email = localStorage.getItem('email')
+  if (email) { isLoggedIn = true }
   return (
     <div className='my-2' key={props.id}>
-      <Card>
-        <Card.Img variant="top" src={props.image['original_url'] ? props.image['original_url'] : imageAlt} className='object-fit' />
+      <Card style={{ 'height': '28rem' }} className='border border-success'>
+        <Card.Img style={{ 'height': '18rem', 'objectFit': 'cover', 'padding': '1rem' }} variant="top" src={props.image['original_url'] ? props.image['original_url'] : imageAlt} className='object-fit rounded-lg' />
         <Card.Body>
           <Card.Title className='lineClamp'>{props.name}</Card.Title>
           <Card.Text>
@@ -28,11 +31,17 @@ function PlantCard(props) {
             <span>watering: {props.watering}</span>
           </Card.Text>
           {/* to change the link according to clicked plant card */}
-          <Link to={`/plants/${props.id}`}>
-            <Button variant="success">
-              Know More
-            </Button>
-          </Link>
+
+          {isLoggedIn
+            ?
+            <Link to={`/plants/${props.id}`}>
+              <Button variant="btn btn-outline-success outline-3">
+                Know More
+              </Button>
+            </Link>
+            :
+            <span></span>}
+
         </Card.Body>
       </Card>
     </div>

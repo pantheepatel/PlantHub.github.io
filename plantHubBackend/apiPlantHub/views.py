@@ -7,7 +7,8 @@ from django.db.models import Q
 
 
 def reloadData(request):
-    for page in range(2, 8):
+    # there is data of 25 pages in database, when you next run this change values to (26,31) to load another 5page(150plants)
+    for page in range(21, 26):
         url = 'https://perenual.com/api/species-list?page=1&key=sk-XI3m64f21258ee70e1780&page=' + \
             str(page)
         response = requests.get(url)
@@ -46,8 +47,10 @@ def reloadData(request):
     # return render(request, 'http://localhost:3000/', {'plant': Plant})
     # return JsonResponse(Plant, safe=False)
 
+# next time change the value to (201,251)
 
-def reloadDataEachPlant(request, fromId=211, toId=217):
+
+def reloadDataEachPlant(request, fromId=151, toId=201):
     for id in range(fromId, toId):
         url = 'https://perenual.com/api/species/details/' + \
             str(id)+'?key=sk-XI3m64f21258ee70e1780'
@@ -134,20 +137,52 @@ def searchPlant(request, searchTerm):
 
 
 def fetchPlantsPage(requests, page):
-    searchTerm=requests.GET.get('search')
-    print(searchTerm)
+    searchTerm = requests.GET.get('search')
+    watering = requests.GET.get('water')
+    indoor = requests.GET.get('indoor')
+    # cycleType = requests.GET.get('ctype')
+    print(searchTerm, watering, indoor)
     plantDataArray = []
-    if searchTerm:
-        plants=Plant.objects.filter(name__contains=searchTerm).values()
+
+    if (searchTerm and watering and indoor):
+        plants = PlantDetail.objects.filter(name__contains=searchTerm).filter(
+            watering__contains=watering).filter(indoor__contains=indoor).values()
+
+    elif (searchTerm and indoor):
+        plants = PlantDetail.objects.filter(name__contains=searchTerm).filter(
+            indoor__contains=indoor).values()
+    elif (searchTerm and watering):
+        plants = Plant.objects.filter(name__contains=searchTerm).filter(
+            watering__contains=watering).values()
+    elif (indoor and watering):
+        plants = PlantDetail.objects.filter(watering__contains=watering).filter(
+            indoor__contains=indoor).values()
+
+    elif (searchTerm):
+        plants = Plant.objects.filter(name__contains=searchTerm).values()
+    elif (watering):
+        plants = Plant.objects.filter(watering__contains=watering).values()
+    elif (indoor):
+        plants = PlantDetail.objects.filter(indoor__contains=indoor).values()
     else:
-        plants=Plant.objects.all().values()
-    plantDataLength=plants.count()
+        plants = Plant.objects.all().values()
+
+    plantDataLength = plants.count()
     print(plantDataLength)
-    print(plants[0]['id'])
+    # print(plants[0]['id'])
     for plant in plants:
         plantData = PlantDetail.objects.filter(id=plant['id']).values()
         plantDataArray.extend(plantData)
-    return JsonResponse({"plantList": list(plantDataArray)})
+
+    displayPlant = []
+
+    # for plantPage in range((page*30)+1, ((page+1)*30)+1):
+    plants = plantDataArray[(page*30): ((page+1)*30)]
+    displayPlant.extend(plants)
+
+    return JsonResponse({"plantList": list(displayPlant),'plantDataLength': plantDataLength})
+
+    # return JsonResponse({"plantList": list(plantDataArray)})
 
 # def filterPlant(request, filter):
 #     plantDataArray = []

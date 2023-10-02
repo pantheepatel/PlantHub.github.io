@@ -62,7 +62,7 @@ function Header() {
               <img src={wordmark3} alt="plantHub" className='App-logo' />
             </Link>
           </Navbar.Brand>
-          <LanguageSwitcher/>
+          {/* <LanguageSwitcher/> */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav className="me-7 gap-1.5 lg:gap-5">
