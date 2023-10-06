@@ -4,6 +4,9 @@ import axios from 'axios'
 import { Link, json } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 import imageAlt from "../images/planthub-logo-zip-file/png/logo-color.png"
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { plantLike } from '../services/PlantDetail';
 
 function PlantCard(props) {
   // JSON.parse(typeof(props.image))
@@ -19,28 +22,56 @@ function PlantCard(props) {
   var isLoggedIn = false
   const email = localStorage.getItem('email')
   if (email) { isLoggedIn = true }
+
+  // const [liked, setLiked] = useState(true);
+  const [liked, setLiked] = useState(false);
+
+
+  const handleLike = async() => {
+    console.log('id is : ', props.id)
+    await plantLike(props.id,localStorage.getItem('id'))
+      .then(response => {
+        // if (response.data.message === 'plant liked') {
+        //   setLiked(true);
+        // } else if (response.data.message === 'plant unliked') {
+        //   setLiked(false);
+        // }
+        console.log(response)
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    // setLiked(!liked)
+  };
+
   return (
     <div className='my-2' key={props.id}>
       <Card style={{ 'height': '28rem' }} className='border border-success'>
         <Card.Img style={{ 'height': '18rem', 'objectFit': 'cover', 'padding': '1rem' }} variant="top" src={props.image['original_url'] ? props.image['original_url'] : imageAlt} className='object-fit rounded-lg' />
-        <Card.Body>
+        <Card.Body className=''>
           <Card.Title className='lineClamp'>{props.name}</Card.Title>
-          <Card.Text>
+          <Card.Text className=''>
             <span>cycle: {props.cycle}</span>
             <br />
             <span>watering: {props.watering}</span>
           </Card.Text>
           {/* to change the link according to clicked plant card */}
-
           {isLoggedIn
             ?
-            <Link to={`/plants/${props.id}`}>
-              <Button variant="btn btn-outline-success outline-3">
-                Know More
-              </Button>
-            </Link>
+            <div className='flex justify-between'>
+
+              <Link to={`/plants/${props.id}`}>
+                <Button variant="btn btn-outline-success outline-3" >
+                  Know More
+                </Button>
+              </Link>
+
+              <button onClick={handleLike}>{liked ? <div><FavoriteIcon color='error' /></div> : <div><FavoriteBorderIcon /></div>}</button>
+
+            </div>
             :
             <span></span>}
+
 
         </Card.Body>
       </Card>

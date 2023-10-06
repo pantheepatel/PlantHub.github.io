@@ -8,35 +8,33 @@ import { Container, Row, Col } from 'react-bootstrap';
 import PlantDetail from '../components/PlantDetail';
 function DetailedPage() {
     const [plantData, setPlantData] = useState('')
-    const [image,setImage]=useState()
-    const [loading,setLoading]=useState(true)
+    const [image, setImage] = useState()
+    const [loading, setLoading] = useState(true)
     // useParams to get the parameteres of url
     const params = useParams();
     console.log('use params id is : ', params.id)
     // when we get the data of specific id plant it will be set to plantData string
-     useEffect(() => {
+    useEffect(() => {
         // let loading=true;
         // api call with id in url
-       async function fetchData(){
-        await plantDataService(params.id)
-        .then(response => {
-            // if(loading){
-            // console.log(response.data['plantDetails'][0])
-            setPlantData(response.data['plantDetails'][0]);
-            // setImage()
-            setImage(response.data['plantDetails'][0].image.original_url)
-            // console.log(response.data['plantDetails'][0].image.original_url)
-            // }
-            setLoading(false)
-            
-            
-        })
-        .catch(error => {
-            // Handle any errors here
-            console.error(error);
-        });
-       }
-       fetchData()
+        async function fetchData() {
+            await plantDataService(params.id)
+                .then(response => {
+                    // if(loading){
+                    // console.log(response.data['plantDetails'][0])
+                    setPlantData(response.data['plantDetails'][0]);
+                    // setImage()
+                    setImage(response.data['plantDetails'][0].image.original_url)
+                    // console.log(response.data['plantDetails'][0].image.original_url)
+                    // }
+                    setLoading(false)
+                })
+                .catch(error => {
+                    // Handle any errors here
+                    console.error(error);
+                });
+        }
+        fetchData() // check what is the use of this 
         // return()=> loading=false;
     }, [params]);
     // console.log('image in this : ',plantData['image'])
@@ -74,32 +72,35 @@ function DetailedPage() {
                 <p></p> 
                 */}
                 {/* {console.log('plantData: ',plantData['image'])} */}
-                
-               {
-                loading?<div>loading data...</div>:
-                <Container>
-                <PlantDetail id={plantData['id']}
-                    name={plantData['name']}
-                    cycle={plantData['cycle']}
-                    watering={plantData['watering']}
-                    description={plantData['description']}
-                    image={image}
-                    type={plantData['type']}
-                    flowers={plantData['flowers']}
-                    flowering_season={plantData['flowering_season']}
-                    fruit={plantData['fruit']}
-                    edible_fruit={plantData['edible_fruit']}
-                    growth_rate={plantData['growth_rate']}
-                    maintenance={plantData['maintenance']}
-                    medicinal={plantData['medicinal']}
-                    poisonous_to_humans={plantData['poisonous_to_humans']}
-                    poisonous_to_pets={plantData['poisonous_to_pets']}
-                    thorny={plantData['thorny']}
-                    indoor={plantData['indoor']}
-                    care_level={plantData['care_level']}>
-                </PlantDetail>
-            </Container>
-               }
+
+                {
+                    loading
+                        ?
+                        <div>loading data...</div> 
+                        :
+                        <Container>
+                            <PlantDetail id={plantData['id']}
+                                name={plantData['name']}
+                                cycle={plantData['cycle']}
+                                watering={plantData['watering']}
+                                description={plantData['description']}
+                                image={image}
+                                type={plantData['type']}
+                                flowers={plantData['flowers']}
+                                flowering_season={plantData['flowering_season']}
+                                fruit={plantData['fruit']}
+                                edible_fruit={plantData['edible_fruit']}
+                                growth_rate={plantData['growth_rate']}
+                                maintenance={plantData['maintenance']}
+                                medicinal={plantData['medicinal']}
+                                poisonous_to_humans={plantData['poisonous_to_humans']}
+                                poisonous_to_pets={plantData['poisonous_to_pets']}
+                                thorny={plantData['thorny']}
+                                indoor={plantData['indoor']}
+                                care_level={plantData['care_level']}>
+                            </PlantDetail>
+                        </Container>
+                }
             </div>
 
         </div>

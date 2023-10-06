@@ -51,27 +51,35 @@ a {
   text-decoration: none;
 
 }
-.text-darkGreen{
+
+.text-darkGreen {
   color: var(--darkgreen);
 }
-.text-lightGreen{
+
+.text-lightGreen {
   color: var(--primary);
 }
+
 .header-color {
   /* background: linear-gradient(to bottom, var(--primary), #deeefc); */
   /* background-color: #3d99702a; */
   background-color: rgba(0, 0, 0, 0.114);
 }
+
 .header-color-scroll {
   background-color: rgba(0, 0, 0, 0.838);
 }
-.strip-color{
+
+.strip-color {
   background-color: #3d9970f6;
   color: whitesmoke;
   align-content: center;
   justify-content: center;
 }
-.navLink,.navLink-scroll,#nav-dropdown {
+
+.navLink,
+.navLink-scroll,
+#nav-dropdown {
   color: var(--primary);
   text-decoration: none;
   font-size: medium;
@@ -80,17 +88,23 @@ a {
   display: flex;
 }
 
-.navLink span,.navLink-scroll span,#nav-dropdown{
+.navLink span,
+.navLink-scroll span,
+#nav-dropdown {
   margin-left: 0.3rem;
 
 }
 
-.navLink:hover,.navLink.active {
+.navLink:hover,
+.navLink.active {
   color: var(--darkgreen);
 }
-.navLink-scroll:hover,.navLink-scroll.active{
+
+.navLink-scroll:hover,
+.navLink-scroll.active {
   color: azure;
 }
+
 .contactUsBg::before {
   content: "";
   background: url("../src/images/hero-img-2.jpg") rgba(151, 222, 164, 0.212);
@@ -119,35 +133,35 @@ a {
 /* for plant care page */
 
 .nav-pills-custom .nav-link {
-    color: #aaa;
-    background: #fff;
-    position: relative;
+  color: #aaa;
+  background: #fff;
+  position: relative;
 }
 
 .nav-pills-custom .nav-link.active {
-    color: #45b649;
-    background: #fff;
+  color: #45b649;
+  background: #fff;
 }
 
 
 /* Add indicator arrow for the active tab */
 @media (min-width: 992px) {
-    .nav-pills-custom .nav-link::before {
-        content: '';
-        display: block;
-        border-top: 8px solid transparent;
-        border-left: 10px solid #fff;
-        border-bottom: 8px solid transparent;
-        position: absolute;
-        top: 50%;
-        right: -10px;
-        transform: translateY(-50%);
-        opacity: 0;
-    }
+  .nav-pills-custom .nav-link::before {
+    content: '';
+    display: block;
+    border-top: 8px solid transparent;
+    border-left: 10px solid #fff;
+    border-bottom: 8px solid transparent;
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
 }
 
 .nav-pills-custom .nav-link.active::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 
@@ -160,20 +174,24 @@ a {
   font-size: 1.4em;
   color: var(--primary)
 }
+
 #billboard .icon-box p,
 #billboard .icon-box .icon-number span {
   font-family: var(--darkgreen);
   font-size: 1.1em;
 }
+
 #billboard .icon-box p {
   line-height: 1.5;
 }
+
 #billboard .icon-box .icon-number {
-   width: 60px;
-   height: 60px;
+  width: 60px;
+  height: 60px;
 }
+
 #billboard .icon-box .icon-content {
-   width: 70%;
+  width: 70%;
 }
 
 
@@ -184,17 +202,20 @@ a {
   height: auto;
   object-fit: cover;
 }
+
 .product-position .card-body {
   right: 0;
   bottom: 70px;
   left: 70px;
 }
+
 .product-position .card-body h2.section-title {
   width: 350px;
 }
+
 @media screen and (max-width: 768px) {
-.product-position .card-body {
-  bottom: 10px;
-  left: 20px;
-}
+  .product-position .card-body {
+    bottom: 10px;
+    left: 20px;
+  }
 }

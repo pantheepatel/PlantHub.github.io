@@ -9,8 +9,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-top:5rem;
+  background-color: white;
 }
-
+body.dark{
+  background-color: rgb(27, 27, 27);
+  color: aliceblue;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

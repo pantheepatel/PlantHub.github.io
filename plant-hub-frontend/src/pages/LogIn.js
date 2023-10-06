@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { auth, provider } from '../Config'
 import { signInWithPopup } from 'firebase/auth'
 import Home from './Home'
+import { userAdd } from '../services/PlantDetail'
+// import { response } from 'express'
 
 function LogIn() {
     const [isLoggedIn, setIsLoggedIn] = useState(Boolean)
@@ -11,6 +13,7 @@ function LogIn() {
             // setValue(data.user.email)
             // setIsLoggedIn(true)
             console.log('user is ', isLoggedIn)
+            console.log('use osf ',data)
             // localStorage.setItem("user",{
             //     "email": data.user.email,
             //     "name": data.user.displayName,
@@ -18,26 +21,38 @@ function LogIn() {
             // })
             localStorage.setItem("email", data.user.email)
             localStorage.setItem("name", data.user.displayName)
-            localStorage.setItem("id",data.user.uid)
+            localStorage.setItem("id", data.user.uid)
             data.user.phoneNumber ? localStorage.setItem("phone no", data.user.phoneNumber) : localStorage.setItem("phone no", 'none')
+            // userAdd('patel.panthee.18@gmail.com')
+            
+
             // this.isLoggedIn= true
             window.location.reload()
         })
-
+        
+        
+        // .then(response => { 
+        //     console.log(response) 
+        //     userAdd(localStorage.getItem('email'))})
+        .catch(err => { console.log(err) })
     }
     const logOut = () => {
         localStorage.clear()
         // setIsLoggedIn(false)
         console.log('user is ', isLoggedIn)
+
         window.location.reload()
     }
     useEffect(() => {
         setValue(localStorage.getItem('email'))
         console.log(value)
-        value?setIsLoggedIn(true):setIsLoggedIn(false)
-        console.log('isLoggedIn ',isLoggedIn)
+        value ? setIsLoggedIn(true) : setIsLoggedIn(false)
+        console.log('isLoggedIn ', isLoggedIn)
 
         // setValue([ localStorage.getItem('email'), localStorage.getItem('name'),localStorage.getItem('phone no') ])
+        userAdd(localStorage.getItem('id'),localStorage.getItem('email'))
+        .then(response => { console.log(response) })
+        .catch(err => { console.log(err) })
     })
     return (
         <div>

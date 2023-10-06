@@ -21,6 +21,27 @@ export const plantDataService = (id) => {
     return axios.get(`http://127.0.0.1:8000/plantData/${id}/`); //make a request of data and return response of file
 }
 
+export const plantLike = (id,uid) => {
+    console.log('into plantLike with id : ', id,uid)
+    return axios.get(`http://127.0.0.1:8000/like/${id}/${uid}`, {
+        // params: {
+        //     // id: id,
+        //     email:email,
+        // }
+    }); //make a request of data and return response of file
+}
+
+export const userAdd = (id,email) => {
+    console.log('into userAdd ',id,email)
+    // console.log(email)
+    return axios.get(`http://127.0.0.1:8000/user/${id}/`, {
+        params: {
+            // name: name,
+            email: email,
+        }
+    });
+}
+
 // export const plantSearch=(searchTerm)=>{
 //     console.log(searchTerm)
 //     return axios.get(`http://127.0.0.1:8000/data&searchTerm=${searchTerm}/`);

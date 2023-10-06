@@ -60,15 +60,16 @@ function Plants() {
   }, [page, searchTerm, watering, indoor]);
 
   const fetchData = async () => {
-    plantList(page, searchTerm, watering, indoor).then(response => {
-      setPage(page)
-      console.log('response is : ', response.data['plantList'])
-      console.log('response length : ', parseInt((response.data['plantDataLength'] / 30)))
-      // var endPage = parseInt((response.data['plantDataLength'] / 30) + 1)
-      setEndPage(parseInt((response.data['plantDataLength'] / 30) + 1))
-      setPlants(response.data['plantList'])
-      setLoading(false)
-    })
+    plantList(page, searchTerm, watering, indoor)
+      .then(response => {
+        setPage(page)
+        console.log('response is : ', response.data['plantList'])
+        console.log('response length : ', parseInt((response.data['plantDataLength'] / 30)))
+        // var endPage = parseInt((response.data['plantDataLength'] / 30) + 1)
+        setEndPage(parseInt((response.data['plantDataLength'] / 30) + 1))
+        setPlants(response.data['plantList'])
+        setLoading(false)
+      })
       .catch((err) => {
         setError(err.message);
         console.log(err)
@@ -157,12 +158,12 @@ function Plants() {
                 {/* <h6>Sort</h6> */}
               </Col>
             </Row>
-            <Row className='pt-12'>
+            <Row className='pt-12 mb-20'>
 
               <Col sm={12}>
                 <div className=' flex justify-content-around fixed-bottom strip-color p-2.5 pt-3 z-1'>
                   <button className={page == startPage ? 'btn bg-secondary text-white' : 'btn bg-primary text-white'} onClick={prev}><ArrowCircleLeftIcon className='mr-2' /> Previous</button>
-                  <span>Total results on this page are {plants.length} and Page is {page + 1}</span>
+                  <span>Total results on this page are {plants.length} and Page is {page + 1}, total page {endPage}</span>
                   <button className={page == (endPage - 1) ? 'btn bg-secondary text-white' : 'btn bg-primary text-white'} onClick={next}>Next<ArrowCircleRightIcon className='ml-2' /> </button>
                 </div>
                 {console.log('plants', plants)}

@@ -2,14 +2,104 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
-from .models import Plant, PlantDetail
+from .models import Plant, PlantDetail, Like, UserProfile
 from django.db.models import Q
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+
+def user(requests,id):
+    email = requests.GET.get('email')
+    # name = requests.GET.get('name')
+    print(id)
+    print(email)
+    try:
+        user = UserProfile.objects.create(id=id,email=email)
+        user.save()
+        print(user)
+    except Exception as e:
+        print('already exists error : ', e)
+        return HttpResponse('User with this email exists', status=400)
+    return JsonResponse({'status': 'ok-200'})
+
+# @permission_classes([IsAuthenticated])
+
+
+# @api_view(['POST'])
+# def like_plant(request):
+#     id = request.GET.get('id')
+#     email = request.GET.get('email')
+#     print(request, id, email)
+#     # Check if the user has already liked the plant
+#     existing_like = Like.objects.filter(user__email=email).filter(plant=id).values()
+#     print('request is : ', existing_like)
+#     if existing_like:
+#         existing_like.delete()
+#         return JsonResponse({'message': 'plant unliked'})
+#     else:
+#         Like.objects.create(user=email, plant=id)
+#         return JsonResponse({'message': 'plant liked'})
+
+# def like_plant(request):
+#     # Assuming you're getting email and id from the request's query parameters
+#     email = request.GET.get('email')
+#     id = request.GET.get('id')
+#     print('in here')
+#     # Retrieve the User instance based on the email
+#     try:
+#         print('there is user ',email)
+#         user,created = UserProfile.objects.get_or_create(email=email)
+#         print('checking in here ',user)
+#     except UserProfile.DoesNotExist:
+#         # Handle the case where the user with the provided email doesn't exist
+#         # You might want to return an error response or take appropriate action.
+#         print('user does not exists')
+#         return HttpResponse('User with this email does not exist', status=400)
+
+#     # Create the Like object with the retrieved User instance
+#     like,created=Like.objects.get_or_create(user=user, plant=id)
+
+#     # # Respond with a success message or appropriate response
+#     # return HttpResponse('Like created successfully')
+
+
+#     # Check if the like was created or already existed
+#     if created:
+#         # Like was created
+#         return HttpResponse('Like created successfully')
+#     else:
+#         # Like already exists
+#         return HttpResponse('Like already exists')
+
+def likePlant(request, id,uid):
+    print(id,uid)
+    plantObj = Plant.objects.get(pk=id)
+    print(plantObj)
+    userObj = UserProfile.objects.get(pk=uid)
+    print(userObj)
+    liked = Like.objects.filter(user=userObj).filter(plant=plantObj).first()
+    print('after ')
+    # Like.save()
+    # liked.save()
+    print('liked is ', liked)
+    if not liked:
+        liked = Like.objects.create(user=userObj, plant=plantObj)
+        Like.save()
+        # liked.save()
+        return HttpResponse('Like created successfully')
+    else:
+        liked = Like.objects.filter(
+            user=userObj).filter(plant=plantObj).delete()
+        Like.save()
+        # liked.save()
+        return HttpResponse('Like already exists')
 
 
 def reloadData(request):
     # there is data of 25 pages in database, when you next run this change values to (26,31) to load another 5page(150plants)
-    for page in range(21, 26):
-        url = 'https://perenual.com/api/species-list?page=1&key=sk-XI3m64f21258ee70e1780&page=' + \
+    for page in range(1, 6):
+        url = 'https://perenual.com/api/species-list?page=1&key=sk-bCQQ651d99c97bf5a2342&page=' + \
             str(page)
         response = requests.get(url)
         data_ = response.json()
@@ -50,10 +140,10 @@ def reloadData(request):
 # next time change the value to (201,251)
 
 
-def reloadDataEachPlant(request, fromId=151, toId=201):
+def reloadDataEachPlant(request, fromId=1, toId=31):
     for id in range(fromId, toId):
         url = 'https://perenual.com/api/species/details/' + \
-            str(id)+'?key=sk-XI3m64f21258ee70e1780'
+            str(id)+'?key=sk-bCQQ651d99c97bf5a2342'
         response = requests.get(url)
         data_ = response.json()
         # print(PlantDetail.objects.values_list)
@@ -180,7 +270,7 @@ def fetchPlantsPage(requests, page):
     plants = plantDataArray[(page*30): ((page+1)*30)]
     displayPlant.extend(plants)
 
-    return JsonResponse({"plantList": list(displayPlant),'plantDataLength': plantDataLength})
+    return JsonResponse({"plantList": list(displayPlant), 'plantDataLength': plantDataLength})
 
     # return JsonResponse({"plantList": list(plantDataArray)})
 
@@ -203,7 +293,7 @@ def fetchPlantsPage(requests, page):
 
 # def fetch_data(request):
 #     # print('hello')
-#     url = 'https://perenual.com/api/species-list?page=1&key=sk-XI3m64f21258ee70e1780'
+#     url = 'https://perenual.com/api/species-list?page=1&key=sk-bCQQ651d99c97bf5a2342'
 #     response = requests.get(url)
 #     data_ = response.json()
 #     print(data_)

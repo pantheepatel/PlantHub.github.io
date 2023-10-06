@@ -26,6 +26,8 @@ import { auth, provider } from '../Config'
 import LogIn from '../pages/LogIn';
 import LogOut from '../pages/LogOut';
 import { Login } from '@mui/icons-material';
+import { ToggleButton, ToggleButtonGroup, Button } from 'react-bootstrap';
+import { useMediaQuery } from "react-responsive";
 
 function Header() {
   // const [user] =useAuthState(GoogleAuthProvider);
@@ -40,7 +42,14 @@ function Header() {
 
   var isLoggedIn = false
   if (localStorage.getItem('email')) { isLoggedIn = true }
-
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    if (isDark) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [isDark]);
   const [colorChange, setColorchange] = useState(false);
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
@@ -52,6 +61,25 @@ function Header() {
   };
   window.addEventListener('scroll', changeNavbarColor);
 
+  const systemPrefersDark = useMediaQuery(
+    {
+      query: "(prefers-color-scheme: light)",
+    },
+    undefined,
+    (isSystemDark) => setIsDark(isSystemDark)
+  );
+
+  const changeMode = () => {
+    setIsDark(!isDark);
+    console.log(isDark);
+  }
+  // const systemPrefersDark = useMediaQuery(
+  //   {
+  //     query: "(prefers-color-scheme: dark)",
+  //   },
+  //   undefined,
+  //   (isSystemDark) => setIsDark(isSystemDark)
+  // );
 
   return (
     <div>
@@ -81,7 +109,9 @@ function Header() {
                 <PersonIcon />
                 {isLoggedIn ? 'LogOut' : 'Login'}
               </NavLink>
-
+              {/* <Button onClick={changeMode}>
+                {isDark ? 'light' : 'dark'}
+              </Button> */}
 
               {/* <NavLink className={colorChange?'navLink-scroll':'navLink'} to={`plants&page=`}><ForestIcon /> <span>Plants</span></NavLink> */}
             </Nav>
