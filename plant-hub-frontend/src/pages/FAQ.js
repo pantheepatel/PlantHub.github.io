@@ -55,23 +55,23 @@ function FAQ() {
         faqData.map((item) => {
           console.log(item)
           return (
-            <Container className='mb-3'>
+            <Container className='pt-3 mb-3'>
               <h2>{item.category}</h2>
               <>
-              {
-                item.questions.map((question) => {
-                  return(
-                    <Accordion defaultActiveKey="0" flush className='border-2 mb-2 border-success'>
-                    <Accordion.Item classname="" eventKey="0">
-                      <Accordion.Header>{question.question}</Accordion.Header>
-                      <Accordion.Body>
-                        {question.answer}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                  )
-                })
-              }
+                {
+                  item.questions.map((question) => {
+                    return (
+                      <Accordion defaultActiveKey="0" flush className='border-2 mb-2 border-success'>
+                        <Accordion.Item classname="" eventKey="0">
+                          <Accordion.Header style={{ backgroundColor: '#3D9970', color: '#ff' }}>{question.question}</Accordion.Header>
+                          <Accordion.Body>
+                            {question.answer}
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      </Accordion>
+                    )
+                  })
+                }
               </>
             </Container>
           )

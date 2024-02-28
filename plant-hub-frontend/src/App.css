@@ -219,3 +219,135 @@ a {
     left: 20px;
   }
 }
+
+.mainBodySection {
+  margin-top: 3.7rem;
+}
+
+.-mt-5 {
+  margin-top: -2.4rem;
+}
+
+.bgImage {
+  background-image: url('../src/images/tropical-green-leaves-background_53876-88891.avif');
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.welcomeText,
+.planthubText {
+  font-size: 4rem;
+  font-weight: bolder;
+}
+
+.welcomeText {
+  color: var(--primary);
+}
+
+.planthubText {
+  background-size: cover;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: url('../src/images/tropical-green-leaves-background_53876-88891.avif');
+}
+
+.taglineText {
+  color: var(--darkgreen);
+  /* filter: drop-shadow(5px 5px 3px var(--darkgreen)); */
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.accordion-button,
+.accordion-button1 {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.authPage {
+  height: 100vh;
+
+}
+
+.filter {
+  background: #ebf8f26b;
+  backdrop-filter: blur(1px);
+  height: 91.4vh;
+  width: 51vw;
+  margin-left: -1rem;
+}
+
+.halfImg {
+  background-image: url('https://images.pexels.com/photos/2382325/pexels-photo-2382325.jpeg?cs=srgb&dl=pexels-suzy-hazelwood-2382325.jpg&fm=jpg');
+  height: 91.4vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (max-width:467px) {
+  .halfImg {
+    display: none;
+  }
+}
+
+.mainScreen {
+  /* padding: 15% 10%; */
+  border-radius: 10px;
+  transform: translate(0, -80vh);
+  margin: 0 auto;
+  width: 70vw;
+}
+
+.potImg {
+  background-image: url('https://www.shutterstock.com/image-photo/monstera-pot-black-isolated-on-600nw-2145061179.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 70vh;
+  border-radius: 10%;
+}
+
+.wholePage {
+  overflow-y: hidden;
+  height: 91.4vh;
+  /* background-color: pink; */
+}
+
+.login-with-google-btn,.logout-with-google-btn {
+  transition: background-color .3s, box-shadow .3s;
+  padding: 12px 16px 12px 42px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+  color: #757575;
+  font-size: 14px;
+  font-weight: 500;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+  background-color: rgb(194, 247, 194);
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+
+  &:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+  }
+
+  &:active {
+    background-color: #eee;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, .04),
+      0 2px 4px rgba(0, 0, 0, .25),
+      0 0 0 3px #c8dafc;
+  }
+
+}
+
+.logout-with-google-btn {
+  background-color: rgba(134, 134, 134, 0.402);
+}

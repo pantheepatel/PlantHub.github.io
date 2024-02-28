@@ -7,6 +7,11 @@ import imageAlt from "../images/planthub-logo-zip-file/png/logo-color.png"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { plantLike } from '../services/PlantDetail';
+import { FavoriteBorderOutlined } from '@mui/icons-material';
+import { ToastContainer, toast } from 'react-toastify';
+import CachedIcon from '@mui/icons-material/Cached';
+import ShowerIcon from '@mui/icons-material/Shower';
+import "react-toastify/dist/ReactToastify.css";
 
 function PlantCard(props) {
   // JSON.parse(typeof(props.image))
@@ -27,16 +32,20 @@ function PlantCard(props) {
   const [liked, setLiked] = useState(false);
 
 
-  const handleLike = async() => {
+  const handleLike = async () => {
     console.log('id is : ', props.id)
-    await plantLike(props.id,localStorage.getItem('id'))
+    await plantLike(props.id, localStorage.getItem('id'))
       .then(response => {
-        // if (response.data.message === 'plant liked') {
-        //   setLiked(true);
-        // } else if (response.data.message === 'plant unliked') {
-        //   setLiked(false);
-        // }
-        console.log(response)
+        // console.log('this is it : ',response['data'])
+        if (response.data.msg === 'liked') {
+          setLiked(true);
+          // console.log(liked)
+        } else if (response.data.msg === 'unliked') {
+          setLiked(false);
+          window.location.reload()
+          // console.log(liked)
+        }
+        // console.log('response is fpor ',response.data.msg==)
       })
       .catch(error => {
         console.error(error);
@@ -44,35 +53,43 @@ function PlantCard(props) {
     // setLiked(!liked)
   };
 
+  const showAlert = () => {
+    toast.error('Please login first!')
+  }
+
   return (
     <div className='my-2' key={props.id}>
       <Card style={{ 'height': '28rem' }} className='border border-success'>
         <Card.Img style={{ 'height': '18rem', 'objectFit': 'cover', 'padding': '1rem' }} variant="top" src={props.image['original_url'] ? props.image['original_url'] : imageAlt} className='object-fit rounded-lg' />
         <Card.Body className=''>
           <Card.Title className='lineClamp'>{props.name}</Card.Title>
-          <Card.Text className=''>
-            <span>cycle: {props.cycle}</span>
-            <br />
-            <span>watering: {props.watering}</span>
+          <Card.Text className='d-flex gap-4'>
+            <span className='d-flex gap-1 align-items-center '> <CachedIcon fontSize='small' /><span>{props.cycle}</span></span>
+            <span className='d-flex gap-1 align-items-center '> <ShowerIcon fontSize='small' /><span> {props.watering}</span></span>
           </Card.Text>
           {/* to change the link according to clicked plant card */}
-          {isLoggedIn
-            ?
-            <div className='flex justify-between'>
-
-              <Link to={`/plants/${props.id}`}>
-                <Button variant="btn btn-outline-success outline-3" >
-                  Know More
-                </Button>
-              </Link>
-
-              <button onClick={handleLike}>{liked ? <div><FavoriteIcon color='error' /></div> : <div><FavoriteBorderIcon /></div>}</button>
-
-            </div>
-            :
-            <span></span>}
-
-
+          {
+            isLoggedIn
+              ?
+              <div className='flex justify-between'>
+                <Link to={`/plants/${props.id}`}>
+                  <Button variant="btn btn-outline-success outline-3" >
+                    Know More
+                  </Button>
+                </Link>
+                <button onClick={handleLike}>{(liked || props.liked) ? <div><FavoriteIcon color='success' /></div> : <div><FavoriteBorderIcon /></div>}</button>
+              </div>
+              :
+              <div className='flex justify-between'>
+                <Link onClick={showAlert}>
+                  <Button variant="btn btn-secondary outline-3" >
+                    Know More
+                  </Button>
+                </Link>
+                <button onClick={showAlert}><div><FavoriteBorderIcon color='success' /></div></button>
+              </div>
+          }
+          <ToastContainer/>
         </Card.Body>
       </Card>
     </div>

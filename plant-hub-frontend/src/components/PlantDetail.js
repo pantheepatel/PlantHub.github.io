@@ -1,16 +1,25 @@
 // this component is to render all the details of plants in details to DetailsPage of plant
 import React from 'react'
-import { Link, json, useNavigate } from 'react-router-dom';
+import { Link, Router, json, useNavigate } from 'react-router-dom';
 import { Card, Button, Row, Col, Table, Image } from 'react-bootstrap';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import imageAlt from "../images/planthub-logo-zip-file/png/logo-color.png"
-
 function PlantDetail(props) {
 
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   }
+
+  React.useEffect(() => {
+    var isLoggedIn = false;
+    const email = localStorage.getItem('email');
+    if (!email) {
+      // alert('You must loagin to access this page');
+      navigate('/plants');
+      console.log('into go back part');
+    }
+  }, [navigate]);
 
   // const image=props.image.small_url
   // let history = useHistory();

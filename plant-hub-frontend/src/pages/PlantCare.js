@@ -8,12 +8,12 @@ import { Container } from 'react-bootstrap';
 
 
 function PlantCare() {
-  
+
   const details = [
     {
       category: 'Watering Wisdom',
       description: '"Watering Wisdom" is your ultimate guide to mastering the art of watering your plants effectively. In this category, we will delve into the nuances of providing the right amount of moisture to keep your plants thriving. Discover tips on determining the ideal watering frequency for different plant types, using the finger test to check soil moisture, and selecting the right water for your plants. Avoid common watering mistakes, such as overwatering or underwatering, and ensure that your plants receive the hydration they need for vibrant growth.',
-      url: 'https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0ZXIlMjBwbGFudHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80',
+      url: 'https://empire-s3-production.bobvila.com/articles/wp-content/uploads/2017/09/The-Dos-and-Donts-of-Watering-Plants.jpg',
       tips: [
         'Water your plants thoroughly but ensure proper drainage to prevent root rot.',
         'Adjust your watering schedule based on the season and plant type.',
@@ -22,7 +22,7 @@ function PlantCare() {
     {
       category: 'Light and Sunshine',
       description: '"Light and Sunshine" sheds light on the vital role that light plays in the lives of your plants. In this category, we explore the different light requirements of various plant species and provide solutions for optimizing their exposure to light. Learn how to match light levels to your plants preferences, where to place plants for the best light, and how to care for low-light-loving plants. With the right light, you will nurture lush and healthy indoor greenery.',
-      url: 'https://img.freepik.com/premium-photo/ficus-lyrata-plant-terracotta-pot-sale-flower-shop-home-apartment-sun-light_165285-3893.jpg',
+      url: 'https://plnts.com/_next/image?url=https%3A%2F%2Fplnts-api.ams3.digitaloceanspaces.com%2Fmain%2Fe3be36a87e90fd893cab0381b57a026a.jpg&w=1920&q=75',
       tips: [
         'Understand the different light levels, from low to bright indirect light.',
         'Rotate your plants regularly to ensure even light exposure.',
@@ -79,7 +79,7 @@ function PlantCare() {
   // var keyCount = 0
   return (
     <div>
-      <Container className='justify-content-evenly'>
+      <Container className='justify-content-evenly pt-10'>
         <Tab.Container activeKey={key} id="left-tabs-example" defaultActiveKey={details[0]['category']}>
           <Row>
             <Col sm={3}>
@@ -88,7 +88,14 @@ function PlantCare() {
                   details.map((detailObj) => {
                     return (
                       <Nav.Item>
-                        <Nav.Link eventKey={detailObj.category} >{detailObj.category}</Nav.Link>
+                        <Nav.Link eventKey={detailObj.category}
+                          style={{ 
+                            color: key === detailObj.category ? '#fff' : '#3D9970', 
+                          backgroundColor: key === detailObj.category ? '#3D9970' : 'transparent', 
+                          fontWeight: 'medium', 
+                          }}>
+                          {detailObj.category}
+                        </Nav.Link>
                       </Nav.Item>
                     )
                   })
@@ -105,10 +112,14 @@ function PlantCare() {
                           return (
                             <Row>
                               <Col sm={6}>
+                                {console.log(detailObj.url)}
+                                <img src={detailObj.url} alt={key} className='h-100 w-100 object-cover' style={{ maxHeight: '40rem' }} />
+                              </Col>
+                              <Col sm={6}>
                                 <p>
                                   {detailObj.description}
                                 </p>
-                                <p>Tips:</p>
+                                <p className='border-success border-b-2 font-weight-bold text-xl pb-1'>Tips :</p>
                                 {
                                   detailObj.tips.map((tip) => {
                                     return (
@@ -116,10 +127,6 @@ function PlantCare() {
                                     )
                                   })
                                 }
-                              </Col>
-                              <Col sm={6}>
-                                {console.log(detailObj.url)}
-                                <img src={detailObj.url} alt={key} className='h-100 w-100 object-cover' style={{maxHeight:'40rem'}} />
                               </Col>
                             </Row>
                           )
@@ -195,7 +202,7 @@ function PlantCare() {
                             //   }
                             // </div>
         </Tab.Container> */}
-        
+
       </Container>
     </div>
   )

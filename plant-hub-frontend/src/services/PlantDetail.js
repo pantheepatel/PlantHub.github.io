@@ -23,7 +23,7 @@ export const plantDataService = (id) => {
 
 export const plantLike = (id,uid) => {
     console.log('into plantLike with id : ', id,uid)
-    return axios.get(`http://127.0.0.1:8000/like/${id}/${uid}`, {
+    return axios.get(`http://127.0.0.1:8000/like/${id}/${uid}/`, {
         // params: {
         //     // id: id,
         //     email:email,
@@ -40,6 +40,11 @@ export const userAdd = (id,email) => {
             email: email,
         }
     });
+}
+
+export const userLikes=(id)=>{
+    console.log('into user like fetch with id : ',id)
+    return axios.get(`http://127.0.0.1:8000/user/like/${id}/`)
 }
 
 // export const plantSearch=(searchTerm)=>{

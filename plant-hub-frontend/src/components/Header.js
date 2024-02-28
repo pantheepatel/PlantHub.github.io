@@ -83,7 +83,7 @@ function Header() {
 
   return (
     <div>
-      <Navbar expand="lg" className={colorChange ? 'header-color-scroll fixed-top' : 'header-color fixed-top'} bg="" data-bs-theme="">
+      <Navbar expand="lg" className={colorChange ? 'header-color-scroll z-10 w-100 position-fixed top-0' : 'header-color z-10 w-100 position-fixed top-0'} bg="" data-bs-theme="">
         <Container className=''>
           <Navbar.Brand>
             <Link to=''>
@@ -91,8 +91,8 @@ function Header() {
             </Link>
           </Navbar.Brand>
           {/* <LanguageSwitcher/> */}
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className={colorChange ? 'bg-success' : 'bg-none '} />
+          <Navbar.Collapse id="basic-navbar-nav" className={'justify-content-end'}>
             <Nav className="me-7 gap-1.5 lg:gap-5">
               {/* <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to=""><HomeIcon /> <span>Home</span></NavLink> */}
               <NavLink className={colorChange ? 'navLink-scroll' : 'navLink'} to="plants"><ForestIcon /> <span>Plants</span></NavLink>

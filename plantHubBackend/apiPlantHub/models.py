@@ -59,7 +59,7 @@ class PlantDetail(models.Model):
 # def get_fruiting_season (self):
 #     return json.loads(self.fruiting_season)
 class UserProfile(models.Model):
-    id = models.CharField(max_length=25,primary_key=True,default='')
+    id = models.CharField(max_length=50,primary_key=True,default='')
     email = models.EmailField(max_length=100,unique=True)
     # def __str__(self):
     #     return self.uid

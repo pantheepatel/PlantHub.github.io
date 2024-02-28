@@ -3,14 +3,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PlantCard from '../components/PlantCard';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
-import { plantList, plantSearch } from '../services/PlantDetail';
+import { plantList, plantSearch, userLikes } from '../services/PlantDetail';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import Search from '@mui/icons-material/Search';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Height } from '@mui/icons-material';
+import { height } from '@mui/system';
 
 function Plants() {
-  var startPage = 0, indoor_ = 0
+  var startPage = 0
   const [endPage, setEndPage] = useState(0)
   const [plants, setPlants] = useState([]);
   const [error, setError] = useState('');
@@ -18,9 +20,10 @@ function Plants() {
   const [searchTerm, setSearchTerm] = useState('')
   const [cycleType, setCycleType] = useState()
   const [watering, setWatering] = useState()
-  const [indoor, setIndoor] = useState(indoor_)
+  const [indoor, setIndoor] = useState()
   const [loading, setLoading] = useState(true)
-
+  const [likes, setLikes] = useState([])
+  // const [liked, setLiked] = useState(false)
   const prev = () => {
     if (page > startPage) {
       setPage(page - 1);
@@ -48,11 +51,26 @@ function Plants() {
   }
 
   const Indoor = (e) => {
-    // console.log(e.target.value=='indoor')
+    console.log('value is ', e.target.value)
     if (e.target.value === "indoor") { setIndoor(1) }//indoor outdoor
-    else { setIndoor(0) }
+    else if (e.target.value === "outdoor") { setIndoor(0) }//indoor outdoor
+    else { setIndoor() }
     // else { setIndoor() }
     setPage(0)
+  }
+
+  useEffect(() => {
+    fetchLikes()
+  }, [])
+
+  const fetchLikes = async () => {
+    await userLikes(localStorage.getItem('id'))
+      .then(response => {
+        // console.log('re for ',response.data['likes'])
+        setLikes(response.data['likes'])
+        console.log('likes', likes)
+      })
+      .catch()
   }
 
   useEffect(() => {
@@ -81,7 +99,7 @@ function Plants() {
       {
         loading ? <div>loading</div> :
           <Container className='gap-5'>
-            <Row className='justify-content-center fixed mb-10 bg-white p-1 w-full z-10'>
+            <Row className='justify-content-center z-10 w-100 position-fixed' style={{marginTop:'1rem'}}>
               <Col xs={6}>
                 <Form inline className=''>
                   <InputGroup>
@@ -90,75 +108,49 @@ function Plants() {
                   </InputGroup>
                 </Form>
               </Col>
-              <Col xs={6} className='flex flex-col justify-content-around h-fit fixed-left'>
+              <Col xs={1} className='flex flex-col justify-content-around h-fit fixed-left'>
                 <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Filter
                   </Dropdown.Toggle>
                   <Dropdown.Menu className='px-2'>
-                    {/* <Dropdown.Item> */}
                     <Dropdown onChange={wateringType}>
                       <h5>water</h5>
                       <Dropdown.Item>
-                        <input type="radio" name="watering" id="frequent" value="frequent" />
-                        <label htmlFor="frequent">frequent</label>
+                        <input type="radio" name="watering" id="frequent" value="frequent" checked={watering == 'frequent'} />
+                        <label for="frequent">frequent</label>
                       </Dropdown.Item>
                       <Dropdown.Item>
-                        <input type="radio" name="watering" id="average" value="average" />
-                        <label htmlFor="average">average</label>
+                        <input type="radio" name="watering" id="average" value="average" checked={watering == 'average'} />
+                        <label for="average">average</label>
                       </Dropdown.Item>
                       <Dropdown.Item>
-                        <input type="radio" name="watering" id="minimum" value="minimum" />
-                        <label htmlFor="minimum">minimum</label>
+                        <input type="radio" name="watering" id="minimum" value="minimum" checked={watering == 'minimum'} />
+                        <label for="minimum">minimum</label>
                       </Dropdown.Item>
                     </Dropdown>
-                    {/* </Dropdown.Item>
-              <Dropdown.Item> */}
                     <Dropdown onChange={Indoor}>
                       <h5>Indoor/Outdoor</h5>
                       <Dropdown.Item>
-                        <input type="radio" name="indoorOutdoor" id="indoor" value="indoor" />
-                        <label htmlFor="indoor">indoor</label>
+                        <input type="radio" name="indoorOutdoor" id="indoor" value="indoor" checked={indoor == 1} />
+                        <label for="indoor">indoor</label>
                       </Dropdown.Item>
                       <Dropdown.Item>
-                        <input type="radio" name="indoorOutdoor" id="outdoor" value="outdoor" />
-                        <label htmlFor="outdoor">outdoor</label>
+                        <input type="radio" name="indoorOutdoor" id="outdoor" value="outdoor" checked={indoor == 0} />
+                        <label for="outdoor">outdoor</label>
                       </Dropdown.Item>
                     </Dropdown>
-                    {/* </Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
-                {/* <h3>Filter</h3>
-          <p onChange={wateringType}>
-            <h5>Watering</h5>
-            <div>
-              <input type="radio" name="watering" id="frequent" value="frequent" />
-              <label htmlFor="frequent">frequent</label>
-            </div>
-            <div>
-              <input type="radio" name="watering" id="average" value="average" />
-              <label htmlFor="average">average</label>
-            </div>
-            <div>
-              <input type="radio" name="watering" id="minimum" value="minimum" />
-              <label htmlFor="minimum">minimum</label>
-            </div>
-          </p>
-          <p onChange={Indoor}>
-            <h5>Indoor/Outdoor</h5>
-            <div>
-              <input type="radio" name="indoorOutdoor" id="indoor" value="indoor" />
-              <label htmlFor="indoor">indoor</label>
-            </div>
-            <div>
-              <input type="radio" name="indoorOutdoor" id="outdoor" value="outdoor" />
-              <label htmlFor="outdoor">outdoor</label>
-            </div>
-          </p> */}
-                {/* <h6>Sort</h6> */}
+              </Col>
+              <Col xs={5}>
+                <div className='d-flex h-100 align-items-center '>
+                  <span>Applied Filters : &nbsp; </span>
+                  {watering || 'None'} , {indoor === 1 ? 'indoor' : (indoor === 0 ? 'outdoor' : 'none')}
+                </div>
               </Col>
             </Row>
-            <Row className='pt-12 mb-20'>
+            <Row className='mb-20 bottom-0' style={{paddingTop:'4rem'}}>
 
               <Col sm={12}>
                 <div className=' flex justify-content-around fixed-bottom strip-color p-2.5 pt-3 z-1'>
@@ -175,7 +167,13 @@ function Plants() {
                           plants.map((item) => {
                             return (
                               // props are passed to show all the details to plantCard component for overview
-                              <PlantCard id={item['id']} name={item['name']} cycle={item['cycle']} watering={item['watering']} image={item['image']}></PlantCard>
+                              <div>
+                                {/* {setLiked(likes.find(item['id']) ? true : false)} */}
+                                {/* {console.log(liked)} */}
+                                {/* {console.log('liked or not ',likes.includes(item['id']))} */}
+                                {/* {setLiked(likes.includes(item['id']))} */}
+                                <PlantCard id={item['id']} name={item['name']} cycle={item['cycle']} watering={item['watering']} image={item['image']} liked={likes.includes(item['id'])}></PlantCard>
+                              </div>
                             )
                           })
                         }
@@ -190,7 +188,7 @@ function Plants() {
             </Row>
           </Container>
       }
-    </div>
+    </div >
   )
 }
 

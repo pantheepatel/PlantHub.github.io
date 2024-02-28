@@ -30,6 +30,7 @@ export default function App() {
       <Router>
         <Header></Header>
         <button onClick={goToTop} className='z-20 fixed-bottom w-fit ml-auto mr-3 mb-2' ><ArrowCircleUpIcon sx={{ fontSize: 40 }} /></button>
+        <div className="mainBodySection">
         <Routes>
           {/* home page will displayed having overview of all pages */}
           <Route path='' element={<Home />} />
@@ -47,6 +48,7 @@ export default function App() {
           <Route path='user/:id' element={<User />} />
           <Route path='*' element={<NotFound />}></Route>
         </Routes>
+        </div>
 
         {/* <button onClick={goToTop}>ajdkfhn</button> */}
       </Router>
